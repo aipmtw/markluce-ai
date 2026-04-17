@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI English — 20 個 AI Prompt 核心字 | MarkLuce.ai</title>
+<meta name="description" content="AI 時代最常用的 40 個英文 Prompt 單字，附例句與 AI 語音。適合 dev、PM、AI 工作者。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230EA5E9'/><text x='32' y='28' font-family='Arial,sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'>MARK</text><text x='32' y='48' font-family='Arial,sans-serif' font-size='14' font-weight='bold' fill='%2322D3EE' text-anchor='middle'>LUCE</text></svg>" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',Roboto,sans-serif;background:#0f0f1a;color:#e0e0e0;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:#4ecdc4;text-decoration:none}
+a:hover{text-decoration:underline}
+
+.container{max-width:720px;margin:0 auto;padding:0 1rem}
+
+/* Header */
+.header{text-align:center;padding:2.5rem 1rem 1.5rem}
+.header h1{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;color:#fff;margin-bottom:.4rem}
+.header h1 span{color:#4ecdc4}
+.header p{color:#aaa;font-size:.95rem;max-width:480px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:.3rem;font-size:.82rem;color:#888;margin-bottom:1rem}
+.back-link:hover{color:#4ecdc4;text-decoration:none}
+
+/* Section */
+.section{margin-bottom:2rem}
+.section-title{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.section-badge{font-size:.75rem;font-weight:700;padding:.25rem .6rem;border-radius:6px;color:#fff;white-space:nowrap}
+.section-title h2{font-size:1.05rem;font-weight:600;color:#fff}
+.section-title p{font-size:.8rem;color:#888;margin-left:auto}
+
+/* Word card */
+.word-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem 1.2rem;margin-bottom:.8rem;transition:all .2s}
+.word-card:hover{border-color:rgba(78,205,196,.3);background:rgba(255,255,255,.06)}
+.word-top{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem}
+.word-num{font-size:.75rem;font-weight:700;color:#4ecdc4;min-width:1.4rem}
+.word-en{font-size:1.15rem;font-weight:700;color:#fff}
+.word-zh{font-size:.9rem;color:#aaa}
+.word-ipa{font-size:.82rem;color:#888;font-family:'Segoe UI','Noto Sans',sans-serif;letter-spacing:.02em}
+.word-sentence{font-size:.9rem;color:#ccc;line-height:1.6;margin-bottom:.5rem;padding-left:2rem}
+.word-sentence-zh{font-size:.82rem;color:#777;padding-left:2rem;margin-bottom:.5rem}
+.audio-row{display:flex;align-items:center;gap:.5rem;padding-left:2rem}
+.play-btn{display:flex;align-items:center;gap:.35rem;padding:.35rem .8rem;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:transparent;color:#aaa;cursor:pointer;font-size:.8rem;transition:all .2s}
+.play-btn:hover{border-color:#4ecdc4;color:#4ecdc4}
+.play-btn.playing{border-color:#4ecdc4;color:#4ecdc4;background:rgba(78,205,196,.1)}
+.play-btn svg{width:14px;height:14px;fill:currentColor}
+
+/* Audio player bar */
+.player-bar{display:none;align-items:center;gap:.5rem;padding:.5rem .8rem;margin-top:.5rem;margin-left:2rem;background:rgba(78,205,196,.06);border:1px solid rgba(78,205,196,.15);border-radius:8px}
+.player-bar.active{display:flex}
+.player-time{font-size:.72rem;color:#888;font-family:monospace;min-width:2.8rem;text-align:center}
+.player-slider{flex:1;-webkit-appearance:none;appearance:none;height:3px;background:rgba(255,255,255,.12);border-radius:2px;outline:none;cursor:pointer}
+.player-slider::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:#4ecdc4;cursor:pointer}
+.player-slider::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:#4ecdc4;cursor:pointer;border:none}
+
+/* Bonus section */
+.bonus{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.2rem;margin-bottom:2rem}
+.bonus h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.8rem}
+.bonus-group{margin-bottom:1rem}
+.bonus-group h4{font-size:.82rem;color:#4ecdc4;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.04em}
+.bonus-item{font-size:.88rem;color:#ccc;padding:.2rem 0;font-family:'SF Mono',Consolas,monospace}
+.bonus-item span{color:#888;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',Roboto,sans-serif}
+
+/* Tip box */
+.tip{background:rgba(78,205,196,.06);border-left:3px solid #4ecdc4;border-radius:0 8px 8px 0;padding:.8rem 1rem;margin:.6rem 0 .8rem;font-size:.82rem;color:#aaa;line-height:1.6}
+.tip strong{color:#4ecdc4}
+
+/* Footer */
+.footer{border-top:1px solid rgba(255,255,255,.08);padding:1.5rem 1rem;text-align:center;font-size:.78rem;color:#555}
+.footer a{color:#4ecdc4}
+
+@media(max-width:480px){
+  .word-card{padding:.8rem 1rem}
+  .word-sentence,.word-sentence-zh,.audio-row,.player-bar{padding-left:1.6rem}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="header">
+  <a href="/" class="back-link">&larr; MarkLuce.ai</a>
+  <h1><span>AI</span> Prompt Vocabulary</h1>
+  <p>40 個 AI 時代最常用的英文 Prompt 核心字<br>附完整例句 + AI 語音（Azure Neural TTS），專為 dev / PM / AI 工作者設計</p>
+</div>
+
+<!-- Section 1 -->
+<div class="section">
+  <div class="section-title">
+    <span class="section-badge" style="background:linear-gradient(135deg,#4ecdc4,#45b7d1)">1–5</span>
+    <h2>基本操作動詞</h2>
+    <p>佔 50% prompt usage</p>
+  </div>
+
+  <div class="word-card" data-word="generate">
+    <div class="word-top">
+      <span class="word-num">01</span>
+      <span class="word-en">generate</span>
+      <span class="word-zh">生成</span>
+      <span class="word-ipa">/ˈdʒɛnəˌreɪt/</span>
+    </div>
+    <div class="word-sentence">"Generate a list of 10 startup ideas based on current AI trends."</div>
+    <div class="word-sentence-zh">「根據目前的 AI 趨勢，生成 10 個新創點子。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'generate','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'generate','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-generate">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="create">
+    <div class="word-top">
+      <span class="word-num">02</span>
+      <span class="word-en">create</span>
+      <span class="word-zh">建立</span>
+      <span class="word-ipa">/kriˈeɪt/</span>
+    </div>
+    <div class="word-sentence">"Create a REST API endpoint that returns user profile data in JSON."</div>
+    <div class="word-sentence-zh">「建立一個回傳使用者資料的 REST API 端點，格式為 JSON。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'create','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'create','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-create">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="write">
+    <div class="word-top">
+      <span class="word-num">03</span>
+      <span class="word-en">write</span>
+      <span class="word-zh">撰寫</span>
+      <span class="word-ipa">/raɪt/</span>
+    </div>
+    <div class="word-sentence">"Write a unit test for the login function using Jest."</div>
+    <div class="word-sentence-zh">「用 Jest 撰寫登入功能的單元測試。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'write','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'write','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-write">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="explain">
+    <div class="word-top">
+      <span class="word-num">04</span>
+      <span class="word-en">explain</span>
+      <span class="word-zh">解釋</span>
+      <span class="word-ipa">/ɪkˈspleɪn/</span>
+    </div>
+    <div class="word-sentence">"Explain how JavaScript closures work with a simple example."</div>
+    <div class="word-sentence-zh">「用簡單的例子解釋 JavaScript 閉包的運作方式。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'explain','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'explain','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-explain">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="summarize">
+    <div class="word-top">
+      <span class="word-num">05</span>
+      <span class="word-en">summarize</span>
+      <span class="word-zh">摘要</span>
+      <span class="word-ipa">/ˈsʌməˌraɪz/</span>
+    </div>
+    <div class="word-sentence">"Summarize this meeting transcript into three key action items."</div>
+    <div class="word-sentence-zh">「將這份會議記錄摘要成三個重點行動項目。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'summarize','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'summarize','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-summarize">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 2 -->
+<div class="section">
+  <div class="section-title">
+    <span class="section-badge" style="background:linear-gradient(135deg,#f9ca24,#f0932b)">6–10</span>
+    <h2>調整 & 優化</h2>
+  </div>
+
+  <div class="tip"><strong>improve</strong> = 通用改善 &nbsp;|&nbsp; <strong>refine</strong> = 專業微調 &nbsp;|&nbsp; <strong>optimize</strong> = 技術最佳化</div>
+
+  <div class="word-card" data-word="improve">
+    <div class="word-top">
+      <span class="word-num">06</span>
+      <span class="word-en">improve</span>
+      <span class="word-zh">改善</span>
+      <span class="word-ipa">/ɪmˈpruːv/</span>
+    </div>
+    <div class="word-sentence">"Improve this error message to be more user-friendly and actionable."</div>
+    <div class="word-sentence-zh">「改善這個錯誤訊息，使其更友善且可操作。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'improve','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'improve','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-improve">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="refine">
+    <div class="word-top">
+      <span class="word-num">07</span>
+      <span class="word-en">refine</span>
+      <span class="word-zh">精煉</span>
+      <span class="word-ipa">/rɪˈfaɪn/</span>
+    </div>
+    <div class="word-sentence">"Refine the database query to reduce response time below 200 milliseconds."</div>
+    <div class="word-sentence-zh">「精煉這個資料庫查詢，將回應時間降到 200 毫秒以下。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'refine','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'refine','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-refine">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="optimize">
+    <div class="word-top">
+      <span class="word-num">08</span>
+      <span class="word-en">optimize</span>
+      <span class="word-zh">最佳化</span>
+      <span class="word-ipa">/ˈɑːptɪˌmaɪz/</span>
+    </div>
+    <div class="word-sentence">"Optimize this React component to prevent unnecessary re-renders."</div>
+    <div class="word-sentence-zh">「最佳化這個 React 元件，避免不必要的重新渲染。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'optimize','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'optimize','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-optimize">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="rewrite">
+    <div class="word-top">
+      <span class="word-num">09</span>
+      <span class="word-en">rewrite</span>
+      <span class="word-zh">重寫</span>
+      <span class="word-ipa">/ˌriːˈraɪt/</span>
+    </div>
+    <div class="word-sentence">"Rewrite this callback-based code using async/await syntax."</div>
+    <div class="word-sentence-zh">「用 async/await 語法重寫這段 callback 程式碼。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'rewrite','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'rewrite','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-rewrite">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="simplify">
+    <div class="word-top">
+      <span class="word-num">10</span>
+      <span class="word-en">simplify</span>
+      <span class="word-zh">簡化</span>
+      <span class="word-ipa">/ˈsɪmplɪˌfaɪ/</span>
+    </div>
+    <div class="word-sentence">"Simplify this function so a junior developer can understand it."</div>
+    <div class="word-sentence-zh">「簡化這個函式，讓初階開發者也能理解。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'simplify','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'simplify','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-simplify">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 3 -->
+<div class="section">
+  <div class="section-title">
+    <span class="section-badge" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe)">11–15</span>
+    <h2>結構 & 輸出控制</h2>
+    <p>MD / SQL / spec 必備</p>
+  </div>
+
+  <div class="word-card" data-word="format">
+    <div class="word-top">
+      <span class="word-num">11</span>
+      <span class="word-en">format</span>
+      <span class="word-zh">格式化</span>
+      <span class="word-ipa">/ˈfɔːrmæt/</span>
+    </div>
+    <div class="word-sentence">"Format the output as a Markdown table with columns for name, type, and description."</div>
+    <div class="word-sentence-zh">「將輸出格式化為 Markdown 表格，欄位包含名稱、類型和描述。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'format','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'format','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-format">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="convert">
+    <div class="word-top">
+      <span class="word-num">12</span>
+      <span class="word-en">convert</span>
+      <span class="word-zh">轉換</span>
+      <span class="word-ipa">/kənˈvɜːrt/</span>
+    </div>
+    <div class="word-sentence">"Convert this SQL query into a Supabase JavaScript client call."</div>
+    <div class="word-sentence-zh">「將這個 SQL 查詢轉換成 Supabase JavaScript 客戶端寫法。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'convert','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'convert','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-convert">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="list">
+    <div class="word-top">
+      <span class="word-num">13</span>
+      <span class="word-en">list</span>
+      <span class="word-zh">列出</span>
+      <span class="word-ipa">/lɪst/</span>
+    </div>
+    <div class="word-sentence">"List all the possible edge cases for this payment processing flow."</div>
+    <div class="word-sentence-zh">「列出這個付款流程所有可能的邊界情境。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'list','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'list','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-list">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="organize">
+    <div class="word-top">
+      <span class="word-num">14</span>
+      <span class="word-en">organize</span>
+      <span class="word-zh">整理結構</span>
+      <span class="word-ipa">/ˈɔːrɡəˌnaɪz/</span>
+    </div>
+    <div class="word-sentence">"Organize these API routes into logical groups with clear naming conventions."</div>
+    <div class="word-sentence-zh">「將這些 API 路由整理成邏輯群組，使用清楚的命名慣例。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'organize','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'organize','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-organize">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="structure">
+    <div class="word-top">
+      <span class="word-num">15</span>
+      <span class="word-en">structure</span>
+      <span class="word-zh">結構化</span>
+      <span class="word-ipa">/ˈstrʌktʃər/</span>
+    </div>
+    <div class="word-sentence">"Structure this project with separate folders for components, hooks, and utilities."</div>
+    <div class="word-sentence-zh">「用元件、hooks 和工具函式的獨立資料夾來結構化這個專案。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'structure','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'structure','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-structure">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 4 -->
+<div class="section">
+  <div class="section-title">
+    <span class="section-badge" style="background:linear-gradient(135deg,#eb4d4b,#ff7979)">16–20</span>
+    <h2>進階 Prompt</h2>
+    <p>拉開高手差距</p>
+  </div>
+
+  <div class="word-card" data-word="analyze">
+    <div class="word-top">
+      <span class="word-num">16</span>
+      <span class="word-en">analyze</span>
+      <span class="word-zh">分析</span>
+      <span class="word-ipa">/ˈænəˌlaɪz/</span>
+    </div>
+    <div class="word-sentence">"Analyze this error log and identify the root cause of the crash."</div>
+    <div class="word-sentence-zh">「分析這份錯誤日誌，找出當機的根本原因。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'analyze','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'analyze','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-analyze">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="compare">
+    <div class="word-top">
+      <span class="word-num">17</span>
+      <span class="word-en">compare</span>
+      <span class="word-zh">比較</span>
+      <span class="word-ipa">/kəmˈpɛr/</span>
+    </div>
+    <div class="word-sentence">"Compare PostgreSQL and MongoDB for a high-traffic e-commerce application."</div>
+    <div class="word-sentence-zh">「比較 PostgreSQL 和 MongoDB 在高流量電商應用的表現。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'compare','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'compare','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-compare">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="suggest">
+    <div class="word-top">
+      <span class="word-num">18</span>
+      <span class="word-en">suggest</span>
+      <span class="word-zh">建議</span>
+      <span class="word-ipa">/səˈdʒɛst/</span>
+    </div>
+    <div class="word-sentence">"Suggest three ways to improve the onboarding experience for new users."</div>
+    <div class="word-sentence-zh">「建議三種改善新用戶引導體驗的方法。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'suggest','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'suggest','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-suggest">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="simulate">
+    <div class="word-top">
+      <span class="word-num">19</span>
+      <span class="word-en">simulate</span>
+      <span class="word-zh">模擬</span>
+      <span class="word-ipa">/ˈsɪmjəˌleɪt/</span>
+    </div>
+    <div class="word-sentence">"Simulate a conversation between a customer and a support agent about a refund request."</div>
+    <div class="word-sentence-zh">「模擬一段客戶與客服人員之間關於退款的對話。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'simulate','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'simulate','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-simulate">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="validate">
+    <div class="word-top">
+      <span class="word-num">20</span>
+      <span class="word-en">validate</span>
+      <span class="word-zh">驗證</span>
+      <span class="word-ipa">/ˈvælɪˌdeɪt/</span>
+    </div>
+    <div class="word-sentence">"Validate this JSON schema and check if it handles all required fields correctly."</div>
+    <div class="word-sentence-zh">「驗證這個 JSON schema，檢查是否正確處理所有必填欄位。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'validate','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'validate','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-validate">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 5 -->
+<div class="section">
+  <div class="section-title">
+    <span class="section-badge" style="background:linear-gradient(135deg,#00b894,#00cec9)">21–25</span>
+    <h2>情境 & 判斷</h2>
+    <p>描述場景、做出區分</p>
+  </div>
+
+  <div class="word-card" data-word="scenario">
+    <div class="word-top">
+      <span class="word-num">21</span>
+      <span class="word-en">scenario</span>
+      <span class="word-zh">情境</span>
+      <span class="word-ipa">/sɪˈnɛrioʊ/</span>
+    </div>
+    <div class="word-sentence">"Describe a scenario where this authentication flow could fail under high load."</div>
+    <div class="word-sentence-zh">「描述一個在高負載下，這個驗證流程可能失敗的情境。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'scenario','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'scenario','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-scenario">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="distinguish">
+    <div class="word-top">
+      <span class="word-num">22</span>
+      <span class="word-en">distinguish</span>
+      <span class="word-zh">區分</span>
+      <span class="word-ipa">/dɪˈstɪŋɡwɪʃ/</span>
+    </div>
+    <div class="word-sentence">"Distinguish between server-side rendering and client-side rendering in this context."</div>
+    <div class="word-sentence-zh">「在這個情境下，區分伺服器端渲染和客戶端渲染的差異。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'distinguish','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'distinguish','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-distinguish">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="differentiate">
+    <div class="word-top">
+      <span class="word-num">23</span>
+      <span class="word-en">differentiate</span>
+      <span class="word-zh">區別</span>
+      <span class="word-ipa">/ˌdɪfəˈrɛnʃiˌeɪt/</span>
+    </div>
+    <div class="word-sentence">"Differentiate the use cases for REST APIs versus GraphQL in a microservices architecture."</div>
+    <div class="word-sentence-zh">「在微服務架構中，區別 REST API 和 GraphQL 的使用場景。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'differentiate','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'differentiate','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-differentiate">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="calibrate">
+    <div class="word-top">
+      <span class="word-num">24</span>
+      <span class="word-en">calibrate</span>
+      <span class="word-zh">校準</span>
+      <span class="word-ipa">/ˈkælɪˌbreɪt/</span>
+    </div>
+    <div class="word-sentence">"Calibrate the model's temperature setting to balance creativity and accuracy."</div>
+    <div class="word-sentence-zh">「校準模型的 temperature 設定，以平衡創意與準確度。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'calibrate','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'calibrate','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-calibrate">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="evaluate">
+    <div class="word-top">
+      <span class="word-num">25</span>
+      <span class="word-en">evaluate</span>
+      <span class="word-zh">評估</span>
+      <span class="word-ipa">/ɪˈvæljuˌeɪt/</span>
+    </div>
+    <div class="word-sentence">"Evaluate the trade-offs between using a managed database and self-hosting."</div>
+    <div class="word-sentence-zh">「評估使用託管資料庫與自建資料庫之間的取捨。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'evaluate','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'evaluate','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-evaluate">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 6 -->
+<div class="section">
+  <div class="section-title">
+    <span class="section-badge" style="background:linear-gradient(135deg,#fd79a8,#e84393)">26–30</span>
+    <h2>DevOps & 產品</h2>
+    <p>部署、流程、商業</p>
+  </div>
+
+  <div class="word-card" data-word="proceed">
+    <div class="word-top">
+      <span class="word-num">26</span>
+      <span class="word-en">proceed</span>
+      <span class="word-zh">繼續進行</span>
+      <span class="word-ipa">/prəˈsiːd/</span>
+    </div>
+    <div class="word-sentence">"Proceed with the migration after confirming all backups are complete."</div>
+    <div class="word-sentence-zh">「確認所有備份完成後，繼續進行遷移。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'proceed','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'proceed','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-proceed">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="deploy">
+    <div class="word-top">
+      <span class="word-num">27</span>
+      <span class="word-en">deploy</span>
+      <span class="word-zh">部署</span>
+      <span class="word-ipa">/dɪˈplɔɪ/</span>
+    </div>
+    <div class="word-sentence">"Deploy the updated version to staging first, then do a silent deploy to production."</div>
+    <div class="word-sentence-zh">「先將更新版本部署到測試環境，再靜默部署到正式環境。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'deploy','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'deploy','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-deploy">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="revenue">
+    <div class="word-top">
+      <span class="word-num">28</span>
+      <span class="word-en">revenue</span>
+      <span class="word-zh">營收</span>
+      <span class="word-ipa">/ˈrɛvəˌnjuː/</span>
+    </div>
+    <div class="word-sentence">"Analyze how this new subscription tier will impact monthly recurring revenue."</div>
+    <div class="word-sentence-zh">「分析這個新訂閱方案將如何影響每月經常性營收。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'revenue','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'revenue','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-revenue">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="implement">
+    <div class="word-top">
+      <span class="word-num">29</span>
+      <span class="word-en">implement</span>
+      <span class="word-zh">實作</span>
+      <span class="word-ipa">/ˈɪmplɪˌmɛnt/</span>
+    </div>
+    <div class="word-sentence">"Implement a rate limiter that allows 100 requests per minute per user."</div>
+    <div class="word-sentence-zh">「實作一個速率限制器，每位使用者每分鐘允許 100 次請求。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'implement','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'implement','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-implement">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="iterate">
+    <div class="word-top">
+      <span class="word-num">30</span>
+      <span class="word-en">iterate</span>
+      <span class="word-zh">迭代</span>
+      <span class="word-ipa">/ˈɪtəˌreɪt/</span>
+    </div>
+    <div class="word-sentence">"Iterate on this design based on the user feedback we collected last sprint."</div>
+    <div class="word-sentence-zh">「根據上個衝刺收集的用戶回饋，對這個設計進行迭代。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'iterate','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'iterate','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-iterate">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 7 -->
+<div class="section">
+  <div class="section-title">
+    <span class="section-badge" style="background:linear-gradient(135deg,#636e72,#b2bec3)">31–35</span>
+    <h2>技術 & 學術詞彙</h2>
+    <p>寫文件、讀論文必備</p>
+  </div>
+
+  <div class="tip"><strong>phenomenon</strong>（單數）vs <strong>phenomena</strong>（複數）— 學術寫作常見錯誤，AI prompt 裡也要注意</div>
+
+  <div class="word-card" data-word="mechanism">
+    <div class="word-top">
+      <span class="word-num">31</span>
+      <span class="word-en">mechanism</span>
+      <span class="word-zh">機制</span>
+      <span class="word-ipa">/ˈmɛkəˌnɪzəm/</span>
+    </div>
+    <div class="word-sentence">"Explain the mechanism behind token-based authentication in modern web apps."</div>
+    <div class="word-sentence-zh">「解釋現代 Web 應用中，基於 Token 驗證的機制。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'mechanism','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'mechanism','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-mechanism">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="anonymous">
+    <div class="word-top">
+      <span class="word-num">32</span>
+      <span class="word-en">anonymous</span>
+      <span class="word-zh">匿名的</span>
+      <span class="word-ipa">/əˈnɑːnɪməs/</span>
+    </div>
+    <div class="word-sentence">"Allow anonymous users to browse the catalog but require login before checkout."</div>
+    <div class="word-sentence-zh">「允許匿名使用者瀏覽目錄，但結帳前需要登入。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'anonymous','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'anonymous','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-anonymous">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="phenomenon">
+    <div class="word-top">
+      <span class="word-num">33</span>
+      <span class="word-en">phenomenon</span>
+      <span class="word-zh">現象（單數）</span>
+      <span class="word-ipa">/fɪˈnɑːmɪˌnɑːn/</span>
+    </div>
+    <div class="word-sentence">"This hallucination phenomenon is a known limitation of large language models."</div>
+    <div class="word-sentence-zh">「這種幻覺現象是大型語言模型的已知限制。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'phenomenon','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'phenomenon','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-phenomenon">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="phenomena">
+    <div class="word-top">
+      <span class="word-num">34</span>
+      <span class="word-en">phenomena</span>
+      <span class="word-zh">現象（複數）</span>
+      <span class="word-ipa">/fɪˈnɑːmɪnə/</span>
+    </div>
+    <div class="word-sentence">"These phenomena occur simultaneously when the system is under heavy concurrent load."</div>
+    <div class="word-sentence-zh">「當系統承受大量並發負載時，這些現象會同時發生。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'phenomena','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'phenomena','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-phenomena">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="simultaneously">
+    <div class="word-top">
+      <span class="word-num">35</span>
+      <span class="word-en">simultaneously</span>
+      <span class="word-zh">同時地</span>
+      <span class="word-ipa">/ˌsaɪməlˈteɪniəsli/</span>
+    </div>
+    <div class="word-sentence">"Run the tests and the linter simultaneously to speed up the CI pipeline."</div>
+    <div class="word-sentence-zh">「同時執行測試和程式碼檢查，加速 CI 流程。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'simultaneously','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'simultaneously','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-simultaneously">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 8 -->
+<div class="section">
+  <div class="section-title">
+    <span class="section-badge" style="background:linear-gradient(135deg,#0984e3,#74b9ff)">36–40</span>
+    <h2>權限 & 系統管理</h2>
+    <p>安全、設定、維運</p>
+  </div>
+
+  <div class="word-card" data-word="privilege">
+    <div class="word-top">
+      <span class="word-num">36</span>
+      <span class="word-en">privilege</span>
+      <span class="word-zh">權限</span>
+      <span class="word-ipa">/ˈprɪvəlɪdʒ/</span>
+    </div>
+    <div class="word-sentence">"Grant the service account read-only privilege to the production database."</div>
+    <div class="word-sentence-zh">「授予服務帳號正式資料庫的唯讀權限。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'privilege','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'privilege','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-privilege">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="authenticate">
+    <div class="word-top">
+      <span class="word-num">37</span>
+      <span class="word-en">authenticate</span>
+      <span class="word-zh">驗證身份</span>
+      <span class="word-ipa">/ɔːˈθɛntɪˌkeɪt/</span>
+    </div>
+    <div class="word-sentence">"Authenticate the user via LINE Login before granting access to premium content."</div>
+    <div class="word-sentence-zh">「透過 LINE Login 驗證使用者身份，再授權存取付費內容。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'authenticate','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'authenticate','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-authenticate">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="configure">
+    <div class="word-top">
+      <span class="word-num">38</span>
+      <span class="word-en">configure</span>
+      <span class="word-zh">設定</span>
+      <span class="word-ipa">/kənˈfɪɡjər/</span>
+    </div>
+    <div class="word-sentence">"Configure the environment variables for both staging and production deployments."</div>
+    <div class="word-sentence-zh">「為測試環境和正式環境的部署設定環境變數。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'configure','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'configure','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-configure">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="archive">
+    <div class="word-top">
+      <span class="word-num">39</span>
+      <span class="word-en">archive</span>
+      <span class="word-zh">封存</span>
+      <span class="word-ipa">/ˈɑːrkaɪv/</span>
+    </div>
+    <div class="word-sentence">"Archive last month's subscription data before running the cleanup job."</div>
+    <div class="word-sentence-zh">「在執行清理作業前，先封存上個月的訂閱資料。」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'archive','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'archive','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-archive">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="word-card" data-word="achieve">
+    <div class="word-top">
+      <span class="word-num">40</span>
+      <span class="word-en">achieve</span>
+      <span class="word-zh">達成</span>
+      <span class="word-ipa">/əˈtʃiːv/</span>
+    </div>
+    <div class="word-sentence">"What steps do we need to achieve 99.9% uptime for this service?"</div>
+    <div class="word-sentence-zh">「我們需要哪些步驟才能達成這個服務 99.9% 的正常運行時間？」</div>
+    <div class="audio-row">
+      <button class="play-btn" onclick="playAudio(this,'achieve','female')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Female
+      </button>
+      <button class="play-btn" onclick="playAudio(this,'achieve','male')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Male
+      </button>
+    </div>
+    <div class="player-bar" id="player-achieve">
+      <span class="player-time">0:00</span>
+      <input type="range" class="player-slider" min="0" max="100" value="0">
+      <span class="player-time">0:00</span>
+    </div>
+  </div>
+
+  <div class="tip"><strong>archive</strong> vs <strong>achieve</strong> — 發音相近但意思完全不同！archive = 封存（/ˈɑːrkaɪv/），achieve = 達成（/əˈtʃiːv/）</div>
+</div>
+
+<!-- Bonus -->
+<div class="bonus">
+  <h3>Bonus: 高階常用句型</h3>
+  <div class="bonus-group">
+    <h4>控制輸出</h4>
+    <div class="bonus-item">"in markdown format" <span>— 用 Markdown 格式</span></div>
+    <div class="bonus-item">"step-by-step" <span>— 一步步來</span></div>
+    <div class="bonus-item">"in table format" <span>— 用表格呈現</span></div>
+  </div>
+  <div class="bonus-group">
+    <h4>限制範圍</h4>
+    <div class="bonus-item">"based on best practices" <span>— 根據最佳實踐</span></div>
+    <div class="bonus-item">"for production use" <span>— 適用於正式環境</span></div>
+    <div class="bonus-item">"for beginners / advanced users" <span>— 面向初學者 / 進階用戶</span></div>
+  </div>
+  <div class="bonus-group">
+    <h4>精準控制（高手關鍵）</h4>
+    <div class="bonus-item">"be concise but complete" <span>— 精簡但完整</span></div>
+    <div class="bonus-item">"avoid generic answers" <span>— 避免泛泛之談</span></div>
+    <div class="bonus-item">"focus on practical implementation" <span>— 專注實作</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>&copy; 2025 <a href="/">MarkLuce.ai</a> &mdash; 馬克路思科技 &nbsp;|&nbsp; <a href="mailto:mark@aipm.com.tw">mark@aipm.com.tw</a></p>
+</div>
+</div>
+
+<script>
+const audio = new Audio();
+let currentBtn = null;
+let currentKey = null;
+
+function fmt(s){
+  const m = Math.floor(s/60), sec = Math.floor(s%60);
+  return m+':'+(sec<10?'0':'')+sec;
+}
+
+function playAudio(btn, word, voice){
+  const key = word + '-' + voice;
+  const bar = document.getElementById('player-'+word);
+
+  // Same button = toggle
+  if(currentKey === key){
+    if(audio.paused){ audio.play(); btn.classList.add('playing'); }
+    else { audio.pause(); btn.classList.remove('playing'); }
+    return;
+  }
+
+  // Stop previous
+  if(currentBtn){ currentBtn.classList.remove('playing'); }
+  document.querySelectorAll('.player-bar.active').forEach(b=>b.classList.remove('active'));
+
+  currentBtn = btn;
+  currentKey = key;
+  btn.classList.add('playing');
+  bar.classList.add('active');
+
+  const slider = bar.querySelector('.player-slider');
+  const times = bar.querySelectorAll('.player-time');
+
+  audio.src = '/ai-english/audio/'+word+'-'+voice+'.mp3';
+  audio.play().catch(()=>{});
+
+  audio.ontimeupdate = ()=>{
+    if(audio.duration){
+      slider.value = (audio.currentTime/audio.duration)*100;
+      times[0].textContent = fmt(audio.currentTime);
+      times[1].textContent = fmt(audio.duration);
+    }
+  };
+
+  slider.oninput = ()=>{
+    if(audio.duration) audio.currentTime = (slider.value/100)*audio.duration;
+  };
+
+  audio.onended = ()=>{
+    btn.classList.remove('playing');
+    slider.value = 0;
+    times[0].textContent = '0:00';
+    currentKey = null;
+    currentBtn = null;
+  };
+
+  audio.onerror = ()=>{
+    btn.classList.remove('playing');
+    bar.classList.remove('active');
+    currentKey = null;
+    currentBtn = null;
+    const sentence = btn.closest('.word-card').querySelector('.word-sentence').textContent.replace(/"/g,'');
+    if('speechSynthesis' in window){
+      const u = new SpeechSynthesisUtterance(sentence);
+      u.lang = 'en-US'; u.rate = 0.9;
+      speechSynthesis.speak(u);
+    }
+  };
+}
+</script>
+
+</body>
+</html>
