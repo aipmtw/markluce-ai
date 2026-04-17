@@ -81,6 +81,21 @@
       .grid{grid-template-columns:repeat(3,1fr)}
     }
   </style>
+  <!-- LIFF redirect handler: catch liff.state returnTo and redirect -->
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var liffState = params.get('liff.state');
+      if (liffState) {
+        var stateParams = new URLSearchParams(liffState.replace(/^\?/, ''));
+        var returnTo = stateParams.get('returnTo');
+        if (returnTo && returnTo !== '/' && returnTo !== window.location.pathname) {
+          window.location.replace(returnTo);
+          return;
+        }
+      }
+    })();
+  </script>
 </head>
 <body>
 

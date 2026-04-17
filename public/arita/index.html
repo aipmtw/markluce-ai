@@ -242,7 +242,15 @@
       var liffUrl = 'https://liff.line.me/' + LIFF_ID + '?returnTo=' + encodeURIComponent(returnTo);
       var canvas = document.getElementById('qr-canvas');
       var link = document.getElementById('qr-link');
-      link.href = liffUrl;
+
+      link.href = '#';
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (typeof liff !== 'undefined') {
+          var base = window.location.origin + window.location.pathname;
+          liff.login({ redirectUri: base + '?v=' + Date.now() });
+        }
+      });
 
       QRCode.toCanvas(canvas, liffUrl, {
         width: 400,
@@ -258,7 +266,11 @@
 
       // nav LINE icon also opens QR modal
       var navLink = document.getElementById('login-qr-link');
-      navLink.href = liffUrl;
+      navLink.href = '#';
+      navLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showQRModal();
+      });
     }
 
     function showQRModal() {
