@@ -4,3 +4,8 @@ node_modules
 .vercel
 .env*.local
 .claude/
+
+# Private notes — repo is PUBLIC, keep strategy/planning local
+BIZ/
+RESUME.md
+ai-2-mark/
