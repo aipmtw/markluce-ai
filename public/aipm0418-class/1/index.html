@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 01 · AI 溝通術：用提示指令高效產出企劃內容 | AIPM 0418</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans TC',-apple-system,'Segoe UI',sans-serif;background:#fefce8;color:#1f2937;min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.75}
+.wrap{max-width:780px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+
+/* Notebook paper feel */
+body{background-image:linear-gradient(to bottom,transparent 28px,#fde68a 28px,#fde68a 29px,transparent 29px);background-size:100% 29px}
+
+nav{margin-bottom:1rem;background:#fefce8;padding:.5rem 0}
+nav a{color:#6b7280;text-decoration:none;font-size:.9rem;font-weight:600;margin-right:.8rem}
+nav a:hover{color:#d97706}
+
+.cover{background:#fff;border:3px solid #78350f;border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;box-shadow:5px 5px 0 #78350f;position:relative}
+.lesson-num{font-size:.75rem;font-weight:800;color:#dc2626;letter-spacing:.15em}
+.cover h1{font-size:1.75rem;color:#78350f;margin:.3rem 0 .6rem;letter-spacing:-.01em;line-height:1.3}
+.cover .sub{color:#92400e;font-size:.9rem;line-height:1.6}
+.tag{display:inline-block;background:#fef3c7;color:#78350f;border:1.5px solid #78350f;padding:.15rem .55rem;font-size:.7rem;font-weight:700;border-radius:4px;margin:.4rem .25rem 0 0}
+
+section{background:#fff;border:2px solid #78350f;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.25rem;box-shadow:3px 3px 0 #78350f}
+section h2{font-size:1.2rem;color:#78350f;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:2px dashed #fca5a5;display:flex;align-items:center;gap:.5rem}
+section h2::before{content:attr(data-num);display:inline-flex;align-items:center;justify-content:center;width:1.8rem;height:1.8rem;background:#dc2626;color:#fff;border-radius:50%;font-size:.9rem;font-weight:800}
+section h3{font-size:1.02rem;color:#92400e;margin:1rem 0 .4rem;font-weight:700}
+section p{margin-bottom:.7rem}
+section ul{margin:.4rem 0 .8rem 1.2rem}
+section li{margin-bottom:.35rem}
+
+.highlight{background:linear-gradient(180deg,transparent 55%,#fde68a 55%);padding:0 .2rem;font-weight:700}
+.quote{background:#fef3c7;border-left:5px solid #d97706;padding:.9rem 1.1rem;margin:.8rem 0;border-radius:0 8px 8px 0;font-style:italic;color:#78350f;position:relative}
+.quote::before{content:'"';font-size:2rem;color:#d97706;position:absolute;left:.4rem;top:-.4rem;font-family:Georgia,serif;font-weight:900}
+.quote-body{margin-left:1.5rem;font-size:.92rem;line-height:1.7}
+
+.kv-table{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.88rem;border:2px solid #78350f;border-radius:6px;overflow:hidden}
+.kv-table th,.kv-table td{padding:.55rem .75rem;text-align:left;border-bottom:1px solid #fde68a}
+.kv-table th{background:#78350f;color:#fff;font-weight:700}
+.kv-table tr:last-child td{border-bottom:none}
+.kv-table td:first-child{font-weight:700;color:#78350f;white-space:nowrap;background:#fef3c7}
+
+.ts{display:inline-block;background:#f3f4f6;color:#6b7280;font-family:'SF Mono',monospace;font-size:.72rem;padding:.1rem .4rem;border-radius:3px;margin-right:.3rem}
+
+.takeaway{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:2.5px solid #065f46;border-radius:12px;padding:1.2rem 1.4rem;margin-top:1.5rem;box-shadow:4px 4px 0 #065f46}
+.takeaway h2{color:#065f46;border-bottom-color:#10b981}
+.takeaway h2::before{background:#065f46;content:'🎯'}
+.takeaway ul{margin-left:0;list-style:none;padding:0}
+.takeaway li{background:#fff;border:1.5px solid #065f46;border-radius:8px;padding:.6rem .8rem;margin-bottom:.5rem;font-size:.92rem}
+.takeaway li strong{color:#065f46}
+
+.pill{display:inline-block;font-size:.72rem;padding:.15rem .5rem;border-radius:999px;font-weight:700;margin:0 .2rem}
+.pill-anthropic{background:#fed7aa;color:#9a3412}
+.pill-openai{background:#d1fae5;color:#065f46}
+.pill-google{background:#dbeafe;color:#1e40af}
+.pill-meta{background:#e9d5ff;color:#6b21a8}
+.pill-xai{background:#fecdd3;color:#9f1239}
+.pill-alibaba{background:#fde68a;color:#78350f}
+
+.foot{margin-top:2rem;padding-top:1rem;border-top:2px dashed #92400e;text-align:center;color:#92400e;font-size:.8rem}
+.foot a{color:#78350f;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">← MarkLuce.ai</a> · <a href="/aipm0418-class/">← 課程總覽</a></nav>
+
+<div class="cover">
+  <div class="lesson-num">LESSON 01 · 09:00–10:20 · 經理人 AI PM 班 第一期（AM151）Day 2</div>
+  <h1>AI 溝通術：用提示指令高效產出企劃內容</h1>
+  <div class="sub">主講：蔡政霖（Dentsu Staff AI Engineer｜台灣人工智慧學校 AIA 前技術總監）</div>
+  <div>
+    <span class="tag">Claude Skills</span>
+    <span class="tag">逆向工程</span>
+    <span class="tag">AI Agent</span>
+    <span class="tag">LLM 引擎比較</span>
+    <span class="tag">多模態</span>
+  </div>
+</div>
+
+<section>
+<h2 data-num="1">講者背景：蔡政霖</h2>
+<ul>
+  <li>學術：中原生物科技 → 陽明生醫資訊碩 → <span class="highlight">陽明交通大學生醫資訊所博士候選人（腦科學）</span>。大型語言模型的許多設計理念都源自腦科學。</li>
+  <li>現職：<strong>Dentsu Staff AI Engineer</strong>（2026.03 ~）+ <strong>長庚醫院 IRB 獨立諮詢專家</strong>（2025.04 ~ 2026.06）</li>
+  <li>前職：<strong>財團法人台灣人工智慧學校基金會（AIA）技術總監</strong>（2025.12 – 2026.02），同學校副組長與 AI 工程師 ~5 年</li>
+  <li>電通：125 年歷史日本廣告公司、全球 143 個據點、台灣子集團 8 品牌 / 1000+ 員工。講者在電通做的是用 AI（主力 Claude）幫廣告媒體投放同仁建內部工具與 Skill。</li>
+  <li>演講經驗：Google、Synopsys、Supermicro、電通台灣、玉山金控、遠東集團、統一超商、長庚醫院、中華電信、工研院等</li>
+</ul>
+</section>
+
+<section>
+<h2 data-num="2">Gen AI 是什麼？用一張圖講完</h2>
+<p>本質：<span class="highlight">把不同輸入（文字/影像/聲音/影片）經過「模型 Function」轉換成另一種輸出。</span></p>
+<div class="quote">
+  <div class="quote-body">
+    「工程上，模型就是一個 function。你丟文字進去，它給你影像；丟影像進去，它給你文字。從左邊到右邊可以，從右邊回推到左邊也可以 — 這就是<strong>逆向工程</strong>。」
+  </div>
+</div>
+<h3>逆向工程的威力</h3>
+<ul>
+  <li>過去：人工寫程式 / 寫指令 → 產生結果</li>
+  <li>現在：把<strong>已經做好的成品</strong>丟給 AI，讓它反推「這是怎麼做出來的」→ 得到指令/程式碼</li>
+  <li>把指令包成 Skill → <strong>以後同類任務只要餵新資料，就能一鍵產出</strong></li>
+</ul>
+<p class="ts">經典梗：<strong>藤子·F·不二雄 47 年前的 AI 構想</strong> — 高品質資料 → 模型訓練／微調 → 用 AI Prompt → 建立 Skill，這個流程跟當代 AI pipeline 一模一樣。</p>
+</section>
+
+<section>
+<h2 data-num="3">Skill：AI 的「技能卡」</h2>
+<p>Skill = 把某個工作流程的「隱性知識」寫成 AI 看得懂的操作指令。</p>
+<ul>
+  <li>場景：教新進同仁「資料在哪、怎麼抓、怎麼處理、怎麼輸出」 → 這整套流程就是一張 Skill</li>
+  <li>流程：
+    <ol style="margin-top:.3rem">
+      <li>跟 AI 一步步做完一次任務</li>
+      <li>請 AI「把剛剛做的事打包成 Skill」</li>
+      <li>再跑一次確認無誤</li>
+      <li>把 Skill 分享給 PM / 其他同仁使用</li>
+    </ol>
+  </li>
+</ul>
+<div class="quote">
+  <div class="quote-body">
+    「公司內部的<strong>隱性知識</strong>本來都散在同仁的 Word、Excel 裡，同事離職就消失。用 Skill 把流程寫下來，它就變成<strong>公司資產</strong>。」
+  </div>
+</div>
+</section>
+
+<section>
+<h2 data-num="4">實戰案例</h2>
+<h3>A. 行銷提案報告：16 小時 → 10 分鐘</h3>
+<p>以前同仁做一份行銷提案需 ~16 小時。寫好 Skill 後，丟 Excel 資料 + 指令，10 分鐘產出草稿，再半小時微調 = <span class="highlight">2 天壓縮到 30 分鐘</span>。</p>
+
+<h3>B. Supermicro 演講：60 頁投影片 + 演講稿</h3>
+<p>用 Claude Opus Live Coding 分析 Supermicro 公開的 Tier-1 機器調校程式，再把 IT 主管給的演講方向餵進去 → 產出 60 頁簡報 + 演講稿。<strong>二三十分鐘就完成。</strong></p>
+
+<h3>C. 從媒體操作手冊反推出系統 PRD</h3>
+<p>同仁把一本媒體操作手冊丟給 AI → <strong>2-3 小時</strong>逆向工程產出 PRD → 做出整套系統雛型（「結果做太大了，不是本來預期的規模」）。</p>
+</section>
+
+<section>
+<h2 data-num="5">黃仁勳的願景：7.5 萬員工 + 750 萬 Agent</h2>
+<ul>
+  <li>Nvidia 黃仁勳（Jensen Huang）宣示：<span class="highlight">未來 NVIDIA 將是 7.5 萬員工 + 750 萬 AI 代理（AI Assistant / Agents）的公司</span>。</li>
+  <li>AI 代理遍布公司每個部門（行銷、法律、工程、供應鏈）— 自主處理任務來極大化生產力。</li>
+  <li>作法：盤點公司內每一個職位的產出步驟 → 為每一個流程建一個 agent。</li>
+  <li>電通正在做的事：每個產出部的每個步驟 → 確認工具鏈 → 建 agent。</li>
+</ul>
+<div class="quote">
+  <div class="quote-body">
+    「以後員工入職第一天，公司會配一個 agent 給你。這個 agent 跟你一起工作，直到你離職 — 你的隱性知識就留存在公司裡，變成公司資產。」
+  </div>
+</div>
+</section>
+
+<section>
+<h2 data-num="6">業界現況：AI 寫程式已是日常</h2>
+<table class="kv-table">
+  <tr><th>公司</th><th>時間</th><th>事件</th></tr>
+  <tr><td>Google</td><td>2025-04-24</td><td>CEO：公司內 ~30% 程式碼已由 AI 生成</td></tr>
+  <tr><td>Spotify</td><td>2026-02-12</td><td>最強開發者從 2025-12 起沒寫過一行 code（techcrunch）</td></tr>
+  <tr><td>OpenAI</td><td>2025</td><td><span class="highlight">95% SWE 100% 使用 Codex 做 PR</span></td></tr>
+  <tr><td>國泰</td><td>2026</td><td>發表 GAI 戰略與技術框架（含輸入/輸出雙重 Guardrail + AI 推論軌跡）</td></tr>
+</table>
+</section>
+
+<section>
+<h2 data-num="7">LLM 引擎使用量與排名（2026-02）</h2>
+<table class="kv-table">
+  <tr><th>引擎</th><th>2026-02 使用量</th><th>3 個月變化</th></tr>
+  <tr><td>ChatGPT</td><td>53.5 億</td><td>市佔 65.8% → 61.7%（下降）</td></tr>
+  <tr><td>Gemini</td><td>21.1 億</td><td>市佔 20.7% → 24.4%（急起直追）</td></tr>
+  <tr><td>Grok</td><td>2.98 億</td><td>市佔 3.2% → 3.4%</td></tr>
+  <tr><td>Claude</td><td>2.90 億</td><td>市佔 2.1% → 3.3%（成長最快）</td></tr>
+  <tr><td>DeepSeek</td><td>2.46 億</td><td>市佔 3.9% → 3.2%</td></tr>
+  <tr><td>Perplexity</td><td>1.54 億</td><td>市佔 2.1% → 1.8%</td></tr>
+</table>
+<p style="font-size:.85rem;color:#6b7280">盲測平台排名請見 <a href="https://lmarena.ai/leaderboard" style="color:#dc2626">lmarena.ai/leaderboard</a></p>
+</section>
+
+<section>
+<h2 data-num="8">LLM 引擎比較</h2>
+<table class="kv-table">
+  <tr><th>引擎</th><th>特色 / 講者觀察</th></tr>
+  <tr><td><span class="pill pill-openai">ChatGPT</span></td><td>KPI 是「用戶停留時間」→ 特別會討好你；講者戲稱「全世界最大的訴訟」，大家什麼抱怨都拿去聊</td></tr>
+  <tr><td>Microsoft</td><td>2015 與馬斯克共同創立 OpenAI 後分手，微軟砸 ~100 億訓模型；自己 5 月中要推 agent 平台</td></tr>
+  <tr><td><span class="pill pill-anthropic">Claude</span></td><td>講者主力；$200/月有 $4000 額度額度（吃到飽）→ 3-4 人共用最划算；程式能力最強；風格走「從故事出發」；支援 UI 繪製圖表</td></tr>
+  <tr><td><span class="pill pill-google">Gemini</span></td><td>Transformer 2017 論文母公司；原生多模態；翻譯起家</td></tr>
+  <tr><td><span class="pill pill-meta">Meta MustBound</span></td><td>砸錢挖人才的新模型，台灣尚未開放；Meta 在生育/生成圖像有大量投入</td></tr>
+  <tr><td><span class="pill pill-alibaba">阿里巴巴 Qwen（千問）</span></td><td>回答口吻「像台灣人」，許多公司內部 B 端選用；丟入大量樣品資料與點擊資料</td></tr>
+  <tr><td><span class="pill pill-xai">xAI Grok</span></td><td>講者副用；拆解成「第一性原理」的風格；一次啟動 4 個 agent 並行處理；試用方案 $30 / 3 個月 → 等於 $10/月（再換帳號繼續用）</td></tr>
+  <tr><td>DeepSeek</td><td>中美貿易戰背景下誕生；改進架構，在算力較弱下仍跑出好效果</td></tr>
+</table>
+<p class="ts">時間軸 ~19:00 – 29:00 · 引擎總覽</p>
+</section>
+
+<section>
+<h2 data-num="9">台灣開源 / 在地模型</h2>
+<ul>
+  <li><strong>TAIDE</strong> — 台灣科技部主導的繁中 LLM</li>
+  <li><strong>Gemma-3-4B-T1-it</strong> — Google Gemma 的台灣調校版</li>
+  <li><strong>ACE-1-24B</strong> — 24B 參數的開源模型</li>
+  <li><strong>Breeze 3</strong> — 聯發科（MediaTek）系列</li>
+</ul>
+<p style="font-size:.85rem;color:#6b7280">在地模型適合「資料不能出境」的金融、醫療、政府案例</p>
+</section>
+
+<section>
+<h2 data-num="10">企業級架構必備：護欄 (Guardrails)</h2>
+<p>尤其金融業：在輸入前後都加 Guardrail</p>
+<ul>
+  <li><strong>輸入端</strong>：偵測敏感資訊 → 阻擋 + 提示使用者移除</li>
+  <li><strong>輸出端</strong>：再次過濾 → 敏感資訊不被帶出</li>
+  <li>中間：完整記錄 AI 的推論軌跡 (Trace) → 事後可稽核</li>
+</ul>
+<div class="quote">
+  <div class="quote-body">
+    「國泰（GAI 戰略框架）做得很誇張 — 這是要對大眾做生產環境的標準，公司內信訊要建，這套架構很完整。」
+  </div>
+</div>
+</section>
+
+<section>
+<h2 data-num="11">多模態：影片 / 操作手冊 → 程式碼</h2>
+<p>最新用法：把教學影片、錄音、操作手冊丟給 Claude → <strong>自動解析關鍵概念 → Live Coding → 產出介面與整套系統</strong>。</p>
+<ul>
+  <li>「只要有影片、有錄音檔、有手冊，就能逆向工程做出系統。」</li>
+  <li>Claude Opus 4.7（4/18 剛出，講者昨天才用上）在這種任務上的表現比 4.6 又好很多。</li>
+</ul>
+</section>
+
+<section class="takeaway">
+<h2 data-num="">本課重點</h2>
+<ul>
+  <li><strong>1. Gen AI 本質是一個 function：</strong>左邊輸入 → 模型 → 右邊輸出。重點是<span class="highlight">兩邊都可以當起點</span>。</li>
+  <li><strong>2. 逆向工程是生產力核心：</strong>從已有成品反推指令，包成 Skill → 下次只需餵資料。</li>
+  <li><strong>3. Skill = 企業隱性知識資產化：</strong>個人工作流變成公司資產，員工離職也不消失。</li>
+  <li><strong>4. AI Agent 是下一步：</strong>黃仁勳的「7.5 萬人 + 750 萬 agent」是主流企業的未來。</li>
+  <li><strong>5. 選對引擎：</strong>程式任務選 Claude，第一性原理分析選 Grok，中文語氣選 Qwen，企業導入必加 Guardrail。</li>
+  <li><strong>6. Claude $200 方案：</strong>相當於 $4000 額度，3-4 人共用最划算。</li>
+</ul>
+</section>
+
+<div class="foot">
+📒 AIPM 0418 Lesson 01 ｜ <a href="/aipm0418-class/">回到課程總覽</a><br>
+基於 faster-whisper 轉錄 + Claude Opus 4.7 整理 · 不是逐字稿，是重點精讀版
+</div>
+
+</div>
+</body>
+</html>

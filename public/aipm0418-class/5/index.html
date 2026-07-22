@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 05 · 產品開發企劃 | AIPM 0418</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans TC',-apple-system,'Segoe UI',sans-serif;background:#fefce8;color:#1f2937;min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.75}
+.wrap{max-width:780px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+body{background-image:linear-gradient(to bottom,transparent 28px,#fde68a 28px,#fde68a 29px,transparent 29px);background-size:100% 29px}
+nav{margin-bottom:1rem;background:#fefce8;padding:.5rem 0}
+nav a{color:#6b7280;text-decoration:none;font-size:.9rem;font-weight:600;margin-right:.8rem}
+nav a:hover{color:#d97706}
+.cover{background:#fff;border:3px solid #78350f;border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;box-shadow:5px 5px 0 #78350f;position:relative}
+.lesson-num{font-size:.75rem;font-weight:800;color:#dc2626;letter-spacing:.15em}
+.cover h1{font-size:1.75rem;color:#78350f;margin:.3rem 0 .6rem;letter-spacing:-.01em;line-height:1.3}
+.cover .sub{color:#92400e;font-size:.9rem;line-height:1.6}
+.tag{display:inline-block;background:#fef3c7;color:#78350f;border:1.5px solid #78350f;padding:.15rem .55rem;font-size:.7rem;font-weight:700;border-radius:4px;margin:.4rem .25rem 0 0}
+section{background:#fff;border:2px solid #78350f;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.25rem;box-shadow:3px 3px 0 #78350f}
+section h2{font-size:1.2rem;color:#78350f;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:2px dashed #fca5a5;display:flex;align-items:center;gap:.5rem}
+section h2::before{content:attr(data-num);display:inline-flex;align-items:center;justify-content:center;width:1.8rem;height:1.8rem;background:#dc2626;color:#fff;border-radius:50%;font-size:.9rem;font-weight:800}
+section h3{font-size:1.02rem;color:#92400e;margin:1rem 0 .4rem;font-weight:700}
+section p{margin-bottom:.7rem}
+section ul,section ol{margin:.4rem 0 .8rem 1.2rem}
+section li{margin-bottom:.35rem}
+.highlight{background:linear-gradient(180deg,transparent 55%,#fde68a 55%);padding:0 .2rem;font-weight:700}
+.quote{background:#fef3c7;border-left:5px solid #d97706;padding:.9rem 1.1rem;margin:.8rem 0;border-radius:0 8px 8px 0;font-style:italic;color:#78350f;position:relative}
+.quote::before{content:'"';font-size:2rem;color:#d97706;position:absolute;left:.4rem;top:-.4rem;font-family:Georgia,serif;font-weight:900}
+.quote-body{margin-left:1.5rem;font-size:.92rem;line-height:1.7}
+.kv-table{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.88rem;border:2px solid #78350f;border-radius:6px;overflow:hidden}
+.kv-table th,.kv-table td{padding:.55rem .75rem;text-align:left;border-bottom:1px solid #fde68a;vertical-align:top}
+.kv-table th{background:#78350f;color:#fff;font-weight:700}
+.kv-table tr:last-child td{border-bottom:none}
+.kv-table td:first-child{font-weight:700;color:#78350f;white-space:nowrap;background:#fef3c7}
+.story{background:linear-gradient(135deg,#fef3c7,#fde68a);border:3px dashed #92400e;border-radius:12px;padding:1.1rem 1.4rem;margin:.8rem 0;color:#78350f}
+.story-title{font-size:.85rem;font-weight:800;color:#92400e;letter-spacing:.1em;margin-bottom:.4rem}
+.pipeline{text-align:center;padding:.8rem;background:#fef3c7;border-radius:8px;font-weight:700;color:#78350f;font-size:1rem;margin:.8rem 0;border:2px dashed #d97706}
+.emphasis{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:2.5px solid #1e40af;border-radius:10px;padding:1rem 1.25rem;margin:.8rem 0;color:#1e3a8a}
+.emphasis strong{color:#1e40af}
+.takeaway{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:2.5px solid #065f46;border-radius:12px;padding:1.2rem 1.4rem;margin-top:1.5rem;box-shadow:4px 4px 0 #065f46}
+.takeaway h2{color:#065f46;border-bottom-color:#10b981}
+.takeaway h2::before{background:#065f46;content:'🎯'}
+.takeaway ul{margin-left:0;list-style:none;padding:0}
+.takeaway li{background:#fff;border:1.5px solid #065f46;border-radius:8px;padding:.6rem .8rem;margin-bottom:.5rem;font-size:.92rem}
+.takeaway li strong{color:#065f46}
+code{background:#fef3c7;color:#b91c1c;font-size:.88rem;padding:.1rem .3rem;border-radius:3px}
+.foot{margin-top:2rem;padding-top:1rem;border-top:2px dashed #92400e;text-align:center;color:#92400e;font-size:.8rem}
+.foot a{color:#78350f;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">← MarkLuce.ai</a> · <a href="/aipm0418-class/">← 課程總覽</a></nav>
+
+<div class="cover">
+  <div class="lesson-num">LESSON 05 · 13:30–15:30 · 經理人 AI PM 班 第一期（AM151）Day 2</div>
+  <h1>產品開發企劃</h1>
+  <div class="sub">主講：曾思遠 Giga（Nautilus AI CEO｜AIA AI x PM 講師）· 副標：從 Canva 小遊戲到 GEO，PM 的 AI 工具箱</div>
+  <div>
+    <span class="tag">AI 步驟拆解</span>
+    <span class="tag">Notion / Markdown / JSON</span>
+    <span class="tag">Mermaid</span>
+    <span class="tag">Vibe Coding</span>
+    <span class="tag">GEO</span>
+    <span class="tag">MCP</span>
+  </div>
+</div>
+
+<section>
+<h2 data-num="1">講者自介：曾思遠 Giga</h2>
+<ul>
+  <li>學術：台大機械碩士 / 財金碩士 / 資工博士班；台灣 AI 學校 (AIA) 第一期技術班</li>
+  <li>現職：<strong>Nautilus AI CEO</strong>、<strong>AIA AI PM 講師</strong></li>
+  <li>曾任：線上學習平台創辦人、金融科技企業策略長、AI 數據科學家</li>
+  <li>授課方向：AI PM、Vibe Coding、AI 在金融的導入、AI 在科技企業導入</li>
+  <li>實戰經驗：加密貨幣交易所、網路券商、期貨 CRM、電商、醫療病例系統、線上學習平台</li>
+</ul>
+</section>
+
+<section>
+<h2 data-num="2">開場故事：女兒的 Canva 牛奶簡報</h2>
+<div class="story">
+  <div class="story-title">📖 STORY TIME</div>
+  <p>女兒回家說學校要做推廣牛奶的 Canva 簡報 — 主題：全脂牛奶健康、低脂牛奶容易長痘痘。</p>
+  <p>講者用 AI 幫女兒做了一個「<strong>牛奶挑戰小遊戲</strong>」：喝低脂 → 長一顆痘痘；喝全脂 → 消一顆痘痘。</p>
+  <p><span class="highlight">重點不是做了什麼，而是「用女兒懂的語言去教她數學」— AI 可以把抽象概念變成她的語言。</span></p>
+</div>
+<div class="quote">
+  <div class="quote-body">
+    「AI 是全世界最聰明的一種生物。我每次都請 AI 用我們自己的語言來教我 — 這就是 AI 最大的學習加速器。」
+  </div>
+</div>
+</section>
+
+<section>
+<h2 data-num="3">公司案例：內部 AI agent「點點學姐」（豆乳）</h2>
+<ul>
+  <li>公司內部的 AI agent，名字叫「點點」，英文叫「豆乳 / Dot Dot」</li>
+  <li>有自己的 IG、有自己的個性，是內部「數位元老」</li>
+  <li>每次發文風格、穿著、配件要一致 — <span class="highlight">這才是生成圖像最難的地方</span></li>
+  <li>IG 內容範例：三星智慧電視 ACR 偷偷截圖的隱私問題 → 畫面是「點點看電視 / 電視看點點」雙視角</li>
+  <li>點點會回 IG 留言、處理 follow-up — 像真的同事</li>
+</ul>
+</section>
+
+<section>
+<h2 data-num="4">把 AI 的步驟拆解</h2>
+<div class="pipeline">選模型 → Prompt → RAG → RPA / Vibe Coding</div>
+<table class="kv-table">
+  <tr><th>階段</th><th>做什麼</th><th>週次</th></tr>
+  <tr><td>入門</td><td>選定合適的 AI 模型（Gemini 3 pro / Claude Opus / GPT）</td><td>Week 1</td></tr>
+  <tr><td>中階</td><td>提示詞優化、System Prompt 角色扮演</td><td>Week 2</td></tr>
+  <tr><td>進階</td><td>補充資料：企業內部 RAG（法規、合約、產品型錄）</td><td>Week 3</td></tr>
+  <tr><td>高階</td><td>透過 RPA 建立 AI Agent、Vibe Coding 打造產品</td><td>Week 6-7</td></tr>
+</table>
+<p style="font-size:.88rem;color:#6b7280">Gemini 圖生：Nano banana；影片：Veo。OpenAI：GPT / DALL·E / Sora。</p>
+</section>
+
+<section>
+<h2 data-num="5">產品 PM vs 專案 PM</h2>
+<table class="kv-table">
+  <tr><th>角色</th><th>問的問題</th><th>關注核心</th><th>價值交付</th></tr>
+  <tr><td>產品 PM</td><td>要做什麼？為誰做？有人要嗎？</td><td>市場與用戶價值</td><td>Build the right thing（做對的事）</td></tr>
+  <tr><td>專案 PM</td><td>怎麼做？能做完嗎？如期嗎？</td><td>資源與交付效率</td><td>Do things right（把事做對）</td></tr>
+</table>
+<div class="quote">
+  <div class="quote-body">
+    「產品重點要偏右腦 — 感性、想像力；專案重點偏左腦 — 邏輯、優先順序。兩者缺一不可。」
+  </div>
+</div>
+<p>即使是公司內部產品，也要做目標客群分析 — 不然同事不用，白做。</p>
+</section>
+
+<section>
+<h2 data-num="6">PM 常用工具</h2>
+<ul>
+  <li><strong>筆記類</strong>：Notion、Obsidian — 講者兩個都用</li>
+  <li><strong>專案管理</strong>：Trello、Linear、GitHub（工程偏好）</li>
+  <li><strong>團隊協作</strong>：開個 Discord / Slack Channel</li>
+</ul>
+<h3>Notion 是什麼</h3>
+<p>整合筆記、文件、資料庫、協作的 <strong>All-in-one</strong> 生產力工具。練習：登入 → Private 旁「+」→ 建第一頁 → 試試 <code>/h1</code>, <code>/h2</code>, <code>/code</code> 等 block。</p>
+<p><span class="highlight">Notion 的核心概念：不是 Word 每行決定字大小，而是「每個東西都是一個 block（區塊）」。</span></p>
+</section>
+
+<section>
+<h2 data-num="7">四種關鍵文件格式</h2>
+<table class="kv-table">
+  <tr><th>格式</th><th>特性</th><th>用在哪</th></tr>
+  <tr><td>Markdown</td><td><strong>人讀 AI 讀都清楚</strong></td><td>PRD、筆記、核心流程</td></tr>
+  <tr><td>JSON</td><td>Key-Value 結構，機器最好處理</td><td>API 傳遞、Function Calling</td></tr>
+  <tr><td>HTML/CSS/JS</td><td>終端使用者介面</td><td>網頁、應用</td></tr>
+  <tr><td>Mermaid</td><td>以文字描述的流程圖與架構圖</td><td>流程分析、PRD 前先畫</td></tr>
+</table>
+<h3>Markdown 速記</h3>
+<ul>
+  <li><code>#</code>（井號 / 景號）+ 空格 = 標題（<code>#</code> 最大、<code>##</code> 次大、<code>###</code> 再次）</li>
+  <li><code>**粗體**</code> — 前後各兩個 star</li>
+  <li><code>---</code> — 三個 dash = 橫線分隔</li>
+  <li><code>- 項目</code> — 清單</li>
+</ul>
+<h3>JSON 五大符號</h3>
+<ul>
+  <li><code>{ }</code> 大括號 — 一個完整的物件</li>
+  <li><code>[ ]</code> 中括號 — 一份陣列（清單）</li>
+  <li><code>"..."</code> 雙引號 — 包住文字與標籤</li>
+  <li><code>:</code> 冒號 — 分隔標籤與資料</li>
+  <li><code>,</code> 逗號 — 分隔下一筆</li>
+</ul>
+<h3>HTML / CSS / JS 大樓比喻</h3>
+<ul>
+  <li><strong>HTML</strong> = 建築物的鋼筋與牆面（結構）</li>
+  <li><strong>CSS</strong> = 幫建築物上色、裝潢、擺傢俱（樣式）</li>
+  <li><strong>JavaScript</strong> = 電梯、開關、感應系統（互動與邏輯）</li>
+</ul>
+</section>
+
+<section>
+<h2 data-num="8">練習：LINE 請假小幫手（aipm048 原型）</h2>
+<p>實作流程：</p>
+<ol>
+  <li>用 Gemini 生成 <strong>JSON product description</strong>（Product_name、Core_features、user_flow、input、output）</li>
+  <li>用 Gemini Canvas 從 JSON <strong>生成對應畫面</strong>（Canvas 的背後就是 HTML）</li>
+  <li>用 Mermaid 畫 <strong>Flowchart + Sequence Diagram</strong></li>
+  <li>產生 PRD（Markdown 格式）</li>
+</ol>
+<p style="font-size:.88rem;color:#6b7280">💡 aipm048 專案中的 Line 請假小幫手 MCP 架構圖，正是這個練習的延伸版本。</p>
+</section>
+
+<section>
+<h2 data-num="9">Mermaid：用文字畫圖</h2>
+<h3>Flowchart（流程圖）5 大用途</h3>
+<ol>
+  <li>描述整體業務流程（訂單、請假等）</li>
+  <li>規劃系統邏輯（if / else decision flow）</li>
+  <li>與 Stakeholder 溝通需求（寫 PRD 前先畫流程）</li>
+  <li>作為開發前的設計草稿</li>
+  <li>Debug 與問題排查（找 bottleneck）</li>
+</ol>
+<h3>Sequence Diagram（序列圖）5 大用途</h3>
+<ol>
+  <li>描述系統之間的互動（Frontend → Backend → DB）</li>
+  <li>設計 API 呼叫流程（request / response 順序）</li>
+  <li>描述非同步 / 即時系統（WebSocket、pub-sub）</li>
+  <li>分析系統責任分工</li>
+  <li>Debug 跨服務複雜問題（支付失敗 → payment API 還是 DB？）</li>
+</ol>
+</section>
+
+<section>
+<h2 data-num="10">SEO 的終結：GEO 時代來了</h2>
+<div class="emphasis">
+  <p><strong>SEO（Search Engine Optimization）</strong>過去 20 年的顯學 — 讓 Google 好爬、好索引、排名高。</p>
+  <p><strong>GEO（Generative Engine Optimization）</strong>是 AI 時代的新顯學 — 讓 <span class="highlight">AI 引擎看得懂你的網站</span>、並在產生答案時引用你。</p>
+</div>
+<h3>Zero Click Search 現象</h3>
+<ul>
+  <li>過去：Google 搜尋 → 點開第 1 頁、第 2 頁、比較、找答案</li>
+  <li>現在：AI 直接給答案 → <span class="highlight">使用者連點都沒點</span></li>
+  <li>結果：傳統 HTML 對 AI 不太友善 — 要加 <strong>Markdown 版本的介紹</strong>（針對每個頁面寫給 AI 看的描述）</li>
+</ul>
+<h3>AI Friendly 設計</h3>
+<ul>
+  <li>同樣的網站架構下，為每個頁面寫一份 <strong>Markdown 介紹</strong>讓 AI 能讀</li>
+  <li>使用 <strong>MCP 接口</strong>，讓 AI 能安全地存取資料</li>
+  <li>考慮「內容能被 AI 引用」而非只是「被點進來看」</li>
+</ul>
+</section>
+
+<section>
+<h2 data-num="11">Prompt 三段式：System / User / (Context)</h2>
+<p>API 呼叫 LLM 時，通常分兩段：</p>
+<ul>
+  <li><strong>System Prompt</strong>：設定 AI 的 Persona（角色人格）</li>
+  <li><strong>User Prompt</strong>：使用者的當下問題</li>
+</ul>
+<p>用網頁 / App（如 Gemini）時兩者合在一起 — 但知道它們<strong>可以分開</strong>很重要，因為這正是系統化導入的關鍵。</p>
+</section>
+
+<section>
+<h2 data-num="12">AI 產出的過濾：AI 給你 60 分，你要補到 90</h2>
+<div class="quote">
+  <div class="quote-body">
+    「AI 寫出的東西可能是 60 分，勉強完整。人還是要修改、消化、判斷 — 等到人沒有角色的時候，你就要開始擔心自己的位置了。」
+  </div>
+</div>
+<ul>
+  <li>AI 產出一定要過濾 — 別交給別人一份自己沒看過的 AI 報告</li>
+  <li>優化一份寫好的產品分析 — 比從零生成更簡單</li>
+  <li>PM 要做的是：<span class="highlight">掌握每個輸入與輸出</span>，才能把節點串聯起來</li>
+  <li>一個小地方掌握不好 → 串聯後更亂</li>
+</ul>
+</section>
+
+<section class="takeaway">
+<h2 data-num="">本課重點</h2>
+<ul>
+  <li><strong>1. AI 四階段：</strong>選模型 → Prompt → RAG → RPA/Vibe Coding，每週推進一階。</li>
+  <li><strong>2. 產品 PM vs 專案 PM：</strong>前者問「做什麼」偏右腦，後者問「怎麼做」偏左腦。</li>
+  <li><strong>3. 四種格式：</strong>Markdown（人+AI）、JSON（API）、HTML（UI）、Mermaid（圖）。</li>
+  <li><strong>4. Notion：</strong>block-based，<code>/h1</code> <code>/code</code> 是基礎招式。</li>
+  <li><strong>5. LINE 請假小幫手練習：</strong>JSON → Gemini Canvas 產畫面 → Mermaid 畫流程。</li>
+  <li><strong>6. GEO 時代：</strong>SEO 是過去 20 年，GEO 是未來 — 要為 AI 寫 Markdown 介紹、裝 MCP。</li>
+  <li><strong>7. 用女兒的語言：</strong>用 AI 學東西，請它「用我懂的語言教我」。</li>
+  <li><strong>8. AI 給 60 分：</strong>人要補到 90 — 掌握每個節點的輸入輸出，不做「AI 代筆的轉包商」。</li>
+</ul>
+</section>
+
+<div class="foot">
+📒 AIPM 0418 Lesson 05 ｜ <a href="/aipm0418-class/">回到課程總覽</a><br>
+基於 faster-whisper 轉錄（file 5 + file 6 cross-check） + 曾思遠講義 PDF 比對 · Claude Opus 4.7 整理
+</div>
+
+</div>
+</body>
+</html>

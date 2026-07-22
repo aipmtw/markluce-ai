@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Group MVP Status Check — 班代提供的第三方檢視服務</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0d12; --surface:#12151d; --surface-2:#1a1f2b; --border:#242b3a;
+    --text:#e8ecf2; --muted:#8a93a6; --accent:#6aa9ff; --accent-2:#a78bfa;
+    --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+    --grad:linear-gradient(135deg,#6aa9ff 0%,#a78bfa 50%,#f472b6 100%);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Noto Sans TC",system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.75;
+    font-feature-settings:"palt"; -webkit-font-smoothing:antialiased;
+  }
+  code,.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.9em}
+  code{background:var(--surface-2); padding:2px 6px; border-radius:4px; color:#c4d0ff}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .layout{display:grid; grid-template-columns:260px 1fr; max-width:1400px; margin:0 auto; gap:48px}
+  @media (max-width:960px){ .layout{grid-template-columns:1fr; gap:0} .toc{display:none} }
+
+  .hero{
+    background:var(--grad); color:#0b0d12; padding:64px 48px 80px;
+    position:relative; overflow:hidden;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 80% 20%, rgba(255,255,255,.3), transparent 50%);
+  }
+  .hero-inner{max-width:1400px; margin:0 auto; position:relative; z-index:1}
+  .hero .eyebrow{
+    display:inline-block; padding:6px 14px; border-radius:999px;
+    background:rgba(0,0,0,.25); color:#fff; font-size:13px; font-weight:500;
+    letter-spacing:.05em; margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:clamp(28px,4.5vw,48px); font-weight:900; margin:0 0 16px;
+    letter-spacing:-.01em; line-height:1.25;
+  }
+  .hero .subtitle{font-size:18px; opacity:.85; margin:0 0 32px; max-width:760px}
+  .meta{display:flex; flex-wrap:wrap; gap:12px}
+  .meta-item{
+    background:rgba(0,0,0,.2); color:#fff; padding:8px 14px; border-radius:8px;
+    font-size:13px; backdrop-filter:blur(8px);
+  }
+  .meta-item strong{margin-right:6px; opacity:.7; font-weight:500}
+
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding:24px 0 24px 32px; max-height:calc(100vh - 48px); overflow-y:auto;
+  }
+  .toc-title{
+    font-size:12px; font-weight:700; color:var(--muted);
+    letter-spacing:.12em; text-transform:uppercase; margin-bottom:12px;
+  }
+  .toc ul{list-style:none; padding:0; margin:0; border-left:1px solid var(--border)}
+  .toc li a{
+    display:block; padding:8px 16px; color:var(--muted);
+    font-size:14px; border-left:2px solid transparent; margin-left:-1px;
+    transition:all .15s;
+  }
+  .toc li a:hover, .toc li a.active{
+    color:var(--text); border-left-color:var(--accent); text-decoration:none;
+  }
+
+  main{padding:48px 48px 120px; max-width:900px}
+  @media (max-width:960px){ main{padding:32px 20px 80px} }
+
+  section{margin-bottom:56px}
+  h2{
+    font-size:24px; font-weight:700; margin:0 0 20px;
+    padding-bottom:12px; border-bottom:1px solid var(--border);
+    display:flex; align-items:center; gap:12px;
+  }
+  h2 .icon{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:32px; height:32px; border-radius:8px;
+    background:var(--grad); color:#0b0d12; font-size:16px; flex-shrink:0;
+  }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:12px; padding:24px; margin-bottom:16px;
+  }
+
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media (max-width:720px){ .pair{grid-template-columns:1fr} }
+  .pair .card h3{margin-top:0; font-size:16px; font-weight:700; display:flex; align-items:center; gap:8px}
+  .do h3{color:var(--good)}
+  .dont h3{color:var(--bad)}
+
+  ul{padding-left:20px; margin:8px 0}
+  li{margin-bottom:6px}
+
+  .steps{counter-reset:step}
+  .step{
+    counter-increment:step;
+    display:flex; gap:16px; padding:18px 20px;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; margin-bottom:12px;
+  }
+  .step::before{
+    content:counter(step); flex-shrink:0;
+    width:36px; height:36px; border-radius:50%;
+    background:var(--grad); color:#0b0d12; font-weight:900;
+    display:flex; align-items:center; justify-content:center; font-size:16px;
+  }
+  .step-body{flex:1}
+  .step-title{font-weight:700; margin-bottom:4px}
+  .step-desc{font-size:14px; color:var(--muted)}
+
+  .rubric{display:grid; gap:10px}
+  .rubric-row{
+    display:flex; gap:14px; padding:14px 16px;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:10px;
+  }
+  .rubric-num{
+    flex-shrink:0; width:28px; height:28px; border-radius:8px;
+    background:var(--grad); color:#0b0d12; font-weight:700;
+    display:flex; align-items:center; justify-content:center; font-size:13px;
+  }
+  .rubric-body{flex:1; font-size:14px}
+  .rubric-body strong{color:var(--text)}
+  .rubric-body .desc{color:var(--muted); margin-top:2px; font-size:13px}
+
+  .callout{
+    background:linear-gradient(135deg, rgba(106,169,255,.08), rgba(167,139,250,.08));
+    border:1px solid rgba(106,169,255,.3); border-radius:10px;
+    padding:16px 20px; margin:16px 0; display:flex; gap:12px;
+  }
+  .callout-icon{flex-shrink:0; font-size:20px}
+  .callout-body{flex:1; font-size:14px}
+  .callout.warn{
+    background:linear-gradient(135deg, rgba(251,191,36,.08), rgba(248,113,113,.08));
+    border-color:rgba(251,191,36,.3);
+  }
+
+  .faq{display:grid; gap:10px}
+  .faq-item{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; padding:16px 20px;
+  }
+  .faq-q{font-weight:700; margin-bottom:6px; color:var(--accent)}
+  .faq-a{font-size:14px; color:var(--text); line-height:1.7}
+
+  .cta{
+    background:linear-gradient(135deg, rgba(106,169,255,.12), rgba(167,139,250,.12));
+    border:1px solid rgba(106,169,255,.35);
+    border-radius:12px; padding:24px; text-align:center;
+  }
+  .cta h3{margin:0 0 8px; font-size:18px}
+  .cta p{margin:0 0 16px; color:var(--muted); font-size:14px}
+  .cta .btn{
+    display:inline-block; padding:10px 22px; border-radius:8px;
+    background:var(--grad); color:#0b0d12; font-weight:700;
+    text-decoration:none; font-size:14px;
+  }
+  .cta .btn:hover{opacity:.9; text-decoration:none}
+
+  .sample-card{
+    display:flex; gap:14px; padding:18px 20px; background:var(--surface);
+    border:1px solid var(--border); border-radius:10px; align-items:center;
+  }
+  .sample-icon{
+    flex-shrink:0; width:44px; height:44px; border-radius:10px;
+    background:var(--grad); display:flex; align-items:center; justify-content:center;
+    font-size:22px;
+  }
+  .sample-body{flex:1}
+  .sample-title{font-weight:700}
+  .sample-desc{font-size:13px; color:var(--muted); margin-top:2px}
+
+  /* Glossary */
+  .glossary-group{margin-bottom:28px}
+  .glossary-group h3{
+    font-size:14px; font-weight:700; color:var(--muted);
+    letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px;
+    padding-bottom:6px; border-bottom:1px dashed var(--border);
+  }
+  .glossary-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px}
+  .glossary-item{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:8px; padding:12px 14px;
+  }
+  .glossary-term{font-family:"JetBrains Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+  .glossary-en{font-size:12px; color:var(--muted); margin-left:6px}
+  .glossary-def{font-size:13px; color:var(--text); margin-top:4px; line-height:1.6}
+
+  footer{
+    margin-top:64px; padding-top:32px; border-top:1px solid var(--border);
+    color:var(--muted); font-size:13px; text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">班代提供 · 第三方檢視 · Neutral Review</span>
+    <h1>Group MVP Status Check</h1>
+    <p class="subtitle">班代提供的輕量級專案狀態檢視服務 — 不介入各組 MVP 開發，只依交付物評分要求，對你們目前的簡報／文件做落差分析與優先排序建議。</p>
+    <div class="meta">
+      <span class="meta-item"><strong>Turnaround</strong>24–48 小時</span>
+      <span class="meta-item"><strong>Format</strong>獨立網頁（僅組內可見）</span>
+      <span class="meta-item"><strong>Cost</strong>免費</span>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="toc">
+    <div class="toc-title">目錄</div>
+    <ul>
+      <li><a href="#what">我能提供什麼</a></li>
+      <li><a href="#notdo">我不做什麼</a></li>
+      <li><a href="#rubric">5 項交付物檢核</a></li>
+      <li><a href="#process">服務流程</a></li>
+      <li><a href="#sample">範例輸出</a></li>
+      <li><a href="#privacy">資料處理與存取控制</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#request">發起一次檢視</a></li>
+      <li><a href="#glossary">用語說明</a></li>
+    </ul>
+  </aside>
+
+  <main>
+
+    <section id="what">
+      <h2><span class="icon">✅</span>我能提供什麼</h2>
+      <div class="card">
+        <ul>
+          <li><strong>5 項交付物逐項完成度評分</strong>（PRD／技術架構／MVP／成果展示／Live Demo）</li>
+          <li><strong>Top 5 優先下一步</strong>（依「評分影響 × 預估工時」排序）</li>
+          <li><strong>Mermaid 流程圖／架構圖建議</strong>（RAG 管線、RPA swimlane、威脅模型 DFD）</li>
+          <li><strong>用戶畫像（Persona）與 Market Sizing 結構建議</strong></li>
+          <li>含 <strong>CISSP CIA 資安檢閱</strong></li>
+          <li>所有產出明確標註「由 AI 協助生成」段落，供各組參考使用</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="notdo">
+      <h2><span class="icon">🚫</span>我不做什麼（避免介入評分公平性）</h2>
+      <div class="pair">
+        <div class="card do">
+          <h3>✓ 我做（AI 產出 + 人工把關）</h3>
+          <p style="font-size:13px; color:var(--muted); margin:0 0 10px">
+            我的實際角色是 <strong>設置 AI 協作環境 + 人工審閱把關</strong>；
+            下列內容的初稿皆由 AI 產出，我做篩選、修正、定稿。
+          </p>
+          <ul>
+            <li>對你們提交的版本 <strong>做檢視</strong></li>
+            <li>給你們 <strong>模板與結構</strong> 建議</li>
+            <li>列出 <strong>未達標項</strong> 與建議改進方向</li>
+            <li>提供 <strong>共用框架</strong>（評分模型、CIA 檢閱）</li>
+          </ul>
+        </div>
+        <div class="card dont">
+          <h3>✗ 我不做</h3>
+          <ul>
+            <li>不替你們 <strong>開發 MVP</strong>（Firebase Studio／Antigravity 要你們自己做）</li>
+            <li>不代筆 <strong>PRD 正式稿</strong></li>
+            <li>不修改你們的 <strong>簡報檔案</strong></li>
+            <li>不做 <strong>RAG／RPA 技術實作</strong></li>
+            <li>不比較各組優劣、不替各組打分</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout warn">
+        <span class="callout-icon">⚖️</span>
+        <div class="callout-body"><strong>為什麼這樣切分：</strong>班代同時也是第 2 組成員，為了不干擾評分公平性，這個服務 <strong>只產出診斷、不產出成品</strong>。每一組最終交付物仍由各組自行完成。</div>
+      </div>
+    </section>
+
+    <section id="rubric">
+      <h2><span class="icon">📋</span>5 項交付物檢核</h2>
+      <div class="rubric">
+        <div class="rubric-row">
+          <span class="rubric-num">①</span>
+          <div class="rubric-body">
+            <strong>產品需求文件 PRD</strong>
+            <div class="desc">市場分析 + 用戶畫像 + 功能規格，須註明 AI 協助段落</div>
+          </div>
+        </div>
+        <div class="rubric-row">
+          <span class="rubric-num">②</span>
+          <div class="rubric-body">
+            <strong>技術架構與流程圖</strong>
+            <div class="desc">使用 Mermaid 繪製，必須包含 RAG 知識庫或 RPA 工作流</div>
+          </div>
+        </div>
+        <div class="rubric-row">
+          <span class="rubric-num">③</span>
+          <div class="rubric-body">
+            <strong>互動式產品原型 MVP</strong>
+            <div class="desc">Vibe Coding 工具（Antigravity／Firebase Studio）開發之可操作 Demo</div>
+          </div>
+        </div>
+        <div class="rubric-row">
+          <span class="rubric-num">④</span>
+          <div class="rubric-body">
+            <strong>專題成果展示</strong>
+            <div class="desc">解決痛點 + 商業價值（對外 CX、對內效率量化）</div>
+          </div>
+        </div>
+        <div class="rubric-row">
+          <span class="rubric-num">⑤</span>
+          <div class="rubric-body">
+            <strong>Live Demo</strong>
+            <div class="desc">必須是「可互動」的展示，不能只是錄影</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <h2><span class="icon">🔄</span>服務流程</h2>
+      <div class="steps">
+        <div class="step"><div class="step-body">
+          <div class="step-title">提交你們目前的檔案</div>
+          <div class="step-desc">簡報（.pptx/.docx）、PRD 初稿、或任何你們想被檢視的版本。可以是 v0.1 草稿也可以是快完成的版本。</div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <div class="step-title">我在 24–48 小時內產出檢視</div>
+          <div class="step-desc">以 5 項交付物為 checklist，給完成度 % 與缺口清單；優先下一步依「評分影響 × 工時」排序。</div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <div class="step-title">結果發佈到獨立網頁</div>
+          <div class="step-desc">你們會拿到一個 <code>aipm.com.tw/group-{n}-status</code> 網址（例如 <code>group-3-status</code>），與本頁同樣的視覺風格。<br><span style="color:var(--muted); font-size:12px"><code>aipm.com.tw</code> 是我註冊的網域，在這裡當成一個虛擬公司，如同微軟文件／教材中的 <strong>Contoso</strong>（或 Fabrikam、Northwind）— 純粹當作教育與示範用途的中立載體；同時 <strong>貼近班別名稱但與學校沒有任何直接連結</strong>。</span></div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <div class="step-title">組員 LINE Login 才能看</div>
+          <div class="step-desc">頁面會加上 LINE 登入，白名單由組長決定。</div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <div class="step-title">需要再次檢視時重新提交</div>
+          <div class="step-desc">每次檢視彼此獨立、不會混合前版內容。建議在重要里程碑前（PRD 定稿前、MVP demo 前、期末交件前）各做一次。<br><strong>即日起每組每週最多一次</strong>（per group, once a week max），以確保品質與排程公平。</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section id="sample">
+      <h2><span class="icon">👀</span>範例輸出</h2>
+      <a href="/group2-demo" class="sample-card" style="text-decoration:none; color:inherit">
+        <div class="sample-icon">📄</div>
+        <div class="sample-body">
+          <div class="sample-title">第 2 組 v1.2 檢視範例</div>
+          <div class="sample-desc">完整輸出格式範例：完成度評分、落差分析、Top 5 建議、CIA 資安檢閱、用語說明</div>
+        </div>
+      </a>
+      <p style="color:var(--muted); font-size:14px; margin-top:12px">第 2 組是我本組，結果公開以便所有組對照相同框架自評。其他組的檢視結果 <strong>預設只對該組可見</strong>，不會公開。</p>
+    </section>
+
+    <section id="privacy">
+      <h2><span class="icon">🔐</span>資料處理與存取控制</h2>
+      <div class="card">
+        <h3 style="margin-top:0">提交前請先自行去敏</h3>
+        <ul>
+          <li>移除客戶／供應商真實名稱（可用 A 公司、B 供應商代替）</li>
+          <li>移除真實成本、毛利、BOM 詳細金額</li>
+          <li>移除 NDA 規格書原文（如需檢視規格處理方式，請用已公開的 datasheet 代替）</li>
+        </ul>
+        <h3>班代側的處理</h3>
+        <ul>
+          <li>提交檔案不會公開、不會轉給其他組、也不會完整出現在網頁裡</li>
+          <li>檢視結果頁面將開啟 LINE Login，白名單僅限該組組長及其指定成員</li>
+          <li>頁面 meta 已設 <code>noindex, nofollow</code>，搜尋引擎不會索引</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <span class="callout-icon">🛡️</span>
+        <div class="callout-body"><strong>現階段的資安等級：</strong>LINE Login 上線前，頁面僅以「網址不對外公佈 + noindex」保護；這是一般企業稱為 <em>security through obscurity</em> 的做法，僅適合「即使外流也無重大損失」的去敏內容。請務必在提交前完成去敏。</div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2><span class="icon">❓</span>FAQ</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-q">Q1. 班代是第 2 組成員，這樣做會不會偏袒第 2 組？</div>
+          <div class="faq-a">為避免疑慮：第 2 組的檢視結果完全公開在 <a href="/group2-demo">markluce.ai/group2-demo</a>，歡迎各組交叉檢視。此外，檢視用的 rubric、評分方法、產出格式對所有組都一致，不會為了第 2 組另做調整。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Q2. 這個檢視結果是不是老師的官方評分？</div>
+          <div class="faq-a">不是。這只是班代（同學身份）提供的 <strong>第三方意見參考</strong>，不代表老師的實際評分。最終評分以課程方為準；<strong>但會按老師指導做調整</strong>。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Q3. 我們組不需要檢視，可以嗎？</div>
+          <div class="faq-a">當然可以。這是 <strong>自願性服務</strong>，不使用不影響任何事情。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Q4. 檢視結果會用 AI 生成嗎？</div>
+          <div class="faq-a">會。主要以 Claude Opus 4.7（或更新 model）產出初稿，班代再人工審閱修正。所有 AI 協助段落會明確標註，符合課程「AI 協助段落需註明」的評分要求。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Q5. 我們可以要求檢視之外的其他服務嗎（例如幫忙寫 PRD）？</div>
+          <div class="faq-a">現階段不提供。為維持評分公平性，班代只提供「檢視」不提供「代做」。如需實作建議可參考頁面上公開的 Mermaid／Persona 模板範本。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Q6. 檢視結果若被其他組看到會影響什麼？</div>
+          <div class="faq-a">LINE Login 一旦上線，「能不能被看到」就 <strong>不再是技術問題，純粹是一個倫理與白名單決策</strong> — 名單外的人就是進不來。<br><br>個人立場：學習期間我 <strong>鼓勵相互觀摩</strong>，彼此的落差、修法、取捨都是很好的對照教材，所以傾向把同期各組納入白名單。<br><br>結訓後 <strong>預設關閉</strong>；若該組全體組員同意，並經 <strong>必要去敏＋抽象化</strong> 處理，才有可能轉成公開頁作為後續學習素材。<br><br>最終白名單範圍與結訓後的處置，皆以 <strong>該組組長＋組員共識</strong> 為準，我只照辦。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="request">
+      <h2><span class="icon">📬</span>發起一次檢視</h2>
+      <div class="cta">
+        <h3>準備好就丟過來</h3>
+        <p>請直接聯繫我本人。</p>
+      </div>
+    </section>
+
+    <section id="glossary">
+      <h2><span class="icon">📖</span>用語說明</h2>
+
+      <div class="glossary-group">
+        <h3>CISSP · 資安三軸</h3>
+        <div class="glossary-grid">
+          <div class="glossary-item"><span class="glossary-term">CISSP</span><span class="glossary-en">Certified Information Systems Security Professional</span><div class="glossary-def">國際公認資安專業證照，常用其 8 大領域作為企業資安檢視框架</div></div>
+          <div class="glossary-item"><span class="glossary-term">CIA Triad</span><span class="glossary-en">Confidentiality · Integrity · Availability</span><div class="glossary-def">資安最基礎三軸：機密性／完整性／可用性</div></div>
+          <div class="glossary-item"><span class="glossary-term">C — 機密性</span><span class="glossary-en">Confidentiality</span><div class="glossary-def">資料不被未授權者存取，例如 NDA 規格書、BOM 成本</div></div>
+          <div class="glossary-item"><span class="glossary-term">I — 完整性</span><span class="glossary-en">Integrity</span><div class="glossary-def">資料不被未授權竄改，例如 RPA 偽造 BOM 變更、LLM 幻覺</div></div>
+          <div class="glossary-item"><span class="glossary-term">A — 可用性</span><span class="glossary-en">Availability</span><div class="glossary-def">需要時服務仍可用，例如 EOL 通報管道不中斷、LLM API 降級模式</div></div>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <h3>資安／存取控制</h3>
+        <div class="glossary-grid">
+          <div class="glossary-item"><span class="glossary-term">Access Control</span><span class="glossary-en">存取控制</span><div class="glossary-def">決定誰可以存取什麼資源的機制；本頁 LINE Login 即為基本 access control 實作</div></div>
+          <div class="glossary-item"><span class="glossary-term">RBAC</span><span class="glossary-en">Role-Based Access Control</span><div class="glossary-def">以角色（PM／採購／RD）授權</div></div>
+          <div class="glossary-item"><span class="glossary-term">HITL</span><span class="glossary-en">Human-in-the-Loop</span><div class="glossary-def">人機協作；關鍵節點仍需人工確認</div></div>
+          <div class="glossary-item"><span class="glossary-term">MFA</span><span class="glossary-en">Multi-Factor Authentication</span><div class="glossary-def">多因素驗證，例如密碼 + 手機驗證碼</div></div>
+          <div class="glossary-item"><span class="glossary-term">Security through obscurity</span><span class="glossary-en">靠隱蔽來保護</span><div class="glossary-def">僅靠「別人不知道」保護資源；CISSP 明確反對作為唯一控制手段</div></div>
+          <div class="glossary-item"><span class="glossary-term">noindex / nofollow</span><span class="glossary-en">搜尋引擎指令</span><div class="glossary-def">告訴搜尋引擎不要索引此頁、不要追蹤其中連結</div></div>
+          <div class="glossary-item"><span class="glossary-term">DLP</span><span class="glossary-en">Data Loss Prevention</span><div class="glossary-def">資料外洩防護，過濾機密內容不外流</div></div>
+          <div class="glossary-item"><span class="glossary-term">DFD</span><span class="glossary-en">Data Flow Diagram</span><div class="glossary-def">資料流圖，威脅模型常用，標示信任邊界</div></div>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <h3>AI／架構</h3>
+        <div class="glossary-grid">
+          <div class="glossary-item"><span class="glossary-term">RAG</span><span class="glossary-en">Retrieval-Augmented Generation</span><div class="glossary-def">檢索增強生成；讓 LLM 能查企業內部知識庫後再回答</div></div>
+          <div class="glossary-item"><span class="glossary-term">RPA</span><span class="glossary-en">Robotic Process Automation</span><div class="glossary-def">跨系統資料搬運與流程自動化</div></div>
+          <div class="glossary-item"><span class="glossary-term">LLM</span><span class="glossary-en">Large Language Model</span><div class="glossary-def">大型語言模型，例如 Claude、GPT</div></div>
+          <div class="glossary-item"><span class="glossary-term">Agentic Workflow</span><span class="glossary-en">代理式工作流</span><div class="glossary-def">LLM 自主規劃多步驟任務的工作流</div></div>
+          <div class="glossary-item"><span class="glossary-term">Grounding</span><span class="glossary-en">輸出引用</span><div class="glossary-def">LLM 回答必須附原文來源，避免幻覺</div></div>
+          <div class="glossary-item"><span class="glossary-term">Hallucination</span><span class="glossary-en">幻覺</span><div class="glossary-def">LLM 產出「看似合理但錯誤」的內容</div></div>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <h3>課程交付物／工具</h3>
+        <div class="glossary-grid">
+          <div class="glossary-item"><span class="glossary-term">PRD</span><span class="glossary-en">Product Requirements Document</span><div class="glossary-def">產品需求文件</div></div>
+          <div class="glossary-item"><span class="glossary-term">MVP</span><span class="glossary-en">Minimum Viable Product</span><div class="glossary-def">最小可行產品，能跑的原型</div></div>
+          <div class="glossary-item"><span class="glossary-term">Mermaid</span><span class="glossary-en">流程圖語法</span><div class="glossary-def">以文字描述繪製流程圖／架構圖，GitHub 原生支援</div></div>
+          <div class="glossary-item"><span class="glossary-term">Persona</span><span class="glossary-en">用戶畫像</span><div class="glossary-def">PRD 中具體化的目標用戶，含目標、痛點、成功指標</div></div>
+          <div class="glossary-item"><span class="glossary-term">Vibe Coding</span><span class="glossary-en">AI 協作編碼</span><div class="glossary-def">以自然語言主導、AI 產出代碼的開發方式</div></div>
+          <div class="glossary-item"><span class="glossary-term">Firebase Studio</span><span class="glossary-en">Google AI 應用平台</span><div class="glossary-def">Google 提供的 Vibe Coding 工具，適合快速做 MVP</div></div>
+          <div class="glossary-item"><span class="glossary-term">Antigravity</span><span class="glossary-en">AI coding 平台</span><div class="glossary-def">另一 Vibe Coding 工具</div></div>
+          <div class="glossary-item"><span class="glossary-term">CX</span><span class="glossary-en">Customer Experience</span><div class="glossary-def">客戶體驗</div></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Generated by Claude Opus 4.7 · 2026-04-19 · 班代服務頁
+    </footer>
+  </main>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.toc a');
+  const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
+  const onScroll = () => {
+    const y = window.scrollY + 120;
+    let active = 0;
+    sections.forEach((s, i) => { if (s && s.offsetTop <= y) active = i; });
+    links.forEach((l, i) => l.classList.toggle('active', i === active));
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+</script>
+</body>
+</html>

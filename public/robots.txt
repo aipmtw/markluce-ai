@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /group2-demo
+Disallow: /group2-demo/
+Disallow: /group-x-mvp-status
+Disallow: /group-x-mvp-status/
+Disallow: /aipm-landing
+Disallow: /aipm-landing/

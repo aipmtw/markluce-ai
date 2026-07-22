@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<title>AIPM · AI 產品管理 學習與實踐</title>
+<meta name="description" content="AI 產品管理（AIPM）學習與實踐：交付物框架、Vibe Coding、RAG／RPA 架構範本、CISSP 資安檢視。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0d12; --surface:#12151d; --surface-2:#1a1f2b; --border:#242b3a;
+    --text:#e8ecf2; --muted:#8a93a6; --accent:#6aa9ff; --accent-2:#a78bfa;
+    --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+    --grad:linear-gradient(135deg,#6aa9ff 0%,#a78bfa 50%,#f472b6 100%);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Noto Sans TC",system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.75;
+    font-feature-settings:"palt"; -webkit-font-smoothing:antialiased;
+  }
+  code{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.9em;
+    background:var(--surface-2); padding:2px 6px; border-radius:4px; color:#c4d0ff}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* Nav */
+  nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(11,13,18,.85); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{max-width:1200px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between}
+  .logo{font-weight:900; font-size:18px; letter-spacing:.05em;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .nav-links{display:flex; gap:20px; font-size:14px}
+  .nav-links a{color:var(--muted)}
+  .nav-links a:hover{color:var(--text); text-decoration:none}
+  @media (max-width:640px){ .nav-links{display:none} }
+
+  /* Hero */
+  .hero{
+    background:var(--grad); color:#0b0d12;
+    padding:80px 24px 100px; position:relative; overflow:hidden;
+  }
+  .hero::before{content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 80% 20%, rgba(255,255,255,.3), transparent 50%)}
+  .hero-inner{max-width:1200px; margin:0 auto; position:relative; z-index:1; text-align:center}
+  .hero .eyebrow{display:inline-block; padding:6px 14px; border-radius:999px;
+    background:rgba(0,0,0,.25); color:#fff; font-size:13px; font-weight:500;
+    letter-spacing:.08em; margin-bottom:24px}
+  .hero h1{font-size:clamp(32px,5vw,56px); font-weight:900; margin:0 0 20px;
+    letter-spacing:-.01em; line-height:1.2}
+  .hero .subtitle{font-size:clamp(16px,2vw,19px); opacity:.9;
+    max-width:720px; margin:0 auto 36px}
+  .hero-cta{display:flex; flex-wrap:wrap; gap:12px; justify-content:center}
+  .btn{display:inline-block; padding:12px 24px; border-radius:10px;
+    font-weight:700; font-size:15px; transition:transform .15s}
+  .btn:hover{transform:translateY(-1px); text-decoration:none}
+  .btn-primary{background:#0b0d12; color:#fff}
+  .btn-ghost{background:rgba(255,255,255,.2); color:#0b0d12; border:1px solid rgba(0,0,0,.15)}
+
+  /* Sections */
+  main{max-width:1200px; margin:0 auto; padding:80px 24px}
+  section{margin-bottom:96px}
+  section h2{
+    font-size:clamp(24px,3vw,32px); font-weight:800; margin:0 0 12px;
+    letter-spacing:-.01em;
+  }
+  section .section-sub{color:var(--muted); font-size:16px; margin:0 0 32px; max-width:720px}
+
+  /* Cards grid */
+  .grid{display:grid; gap:16px}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+  @media (max-width:960px){ .grid-3,.grid-4{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:600px){ .grid-2,.grid-3,.grid-4{grid-template-columns:1fr} }
+
+  .card{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:12px; padding:24px; transition:transform .15s,border-color .15s;
+  }
+  .card h3{margin:0 0 8px; font-size:17px; font-weight:700}
+  .card p{margin:0; color:var(--muted); font-size:14px; line-height:1.7}
+  .card .card-tag{
+    display:inline-block; font-size:11px; letter-spacing:.08em;
+    color:var(--accent); font-weight:700; margin-bottom:8px;
+    text-transform:uppercase;
+  }
+
+  /* Learning path */
+  .path{display:grid; gap:10px; counter-reset:w}
+  .path-week{
+    counter-increment:w;
+    display:flex; gap:16px; padding:16px 20px;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; align-items:center;
+  }
+  .path-week::before{
+    content:"W" counter(w); flex-shrink:0;
+    width:44px; height:44px; border-radius:10px;
+    background:var(--surface-2); color:var(--accent);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:13px; font-family:"JetBrains Mono",monospace;
+  }
+  .path-body{flex:1}
+  .path-title{font-weight:700; margin-bottom:2px}
+  .path-desc{font-size:13px; color:var(--muted)}
+
+  /* Feature showcase */
+  .feature{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; padding:32px; display:grid;
+    grid-template-columns:1fr 1.2fr; gap:32px; align-items:center;
+  }
+  @media (max-width:800px){ .feature{grid-template-columns:1fr} }
+  .feature h3{margin:0 0 12px; font-size:22px}
+  .feature p{color:var(--muted); margin:0 0 20px}
+  .feature-visual{
+    background:var(--grad); border-radius:12px; padding:40px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:64px; min-height:200px;
+  }
+
+  /* Resource cards */
+  .resource{
+    display:block; background:var(--surface); border:1px solid var(--border);
+    border-radius:12px; padding:24px; color:inherit; transition:border-color .15s;
+  }
+  .resource:hover{border-color:var(--accent); text-decoration:none}
+  .resource-status{
+    display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em;
+    padding:3px 10px; border-radius:999px; margin-bottom:12px;
+    text-transform:uppercase;
+  }
+  .status-open{background:rgba(52,211,153,.15); color:var(--good)}
+  .status-gated{background:rgba(251,191,36,.15); color:var(--warn)}
+  .resource h3{margin:0 0 6px; font-size:17px}
+  .resource p{margin:0; color:var(--muted); font-size:14px}
+
+  /* Callout */
+  .callout{
+    background:linear-gradient(135deg,rgba(106,169,255,.08),rgba(167,139,250,.08));
+    border:1px solid rgba(106,169,255,.3); border-radius:10px;
+    padding:16px 20px; display:flex; gap:12px; margin:16px 0;
+  }
+  .callout-icon{flex-shrink:0; font-size:20px}
+
+  footer{
+    border-top:1px solid var(--border); padding:32px 24px;
+    text-align:center; color:var(--muted); font-size:13px;
+  }
+  footer a{color:var(--muted)}
+  footer a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">AIPM</div>
+    <div class="nav-links">
+      <a href="#about">關於</a>
+      <a href="#path">學習路徑</a>
+      <a href="#framework">交付物框架</a>
+      <a href="#resources">公開資源</a>
+      <a href="#anon">匿名意見</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">AI 產品管理 · 學習 · 實踐 · 社群</span>
+    <h1>把 AI 從概念走到<br>「真的有人用」的產品</h1>
+    <p class="subtitle">給想把 AI 產品做出來的 PM、PO、工程師、團隊主管。
+分享可複用的交付物框架、Vibe Coding 實做、RAG／RPA 架構範本、CISSP 資安檢視。</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#path">看學習路徑</a>
+      <a class="btn btn-ghost" href="#resources">公開資源</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <h2>這裡是什麼？</h2>
+    <p class="section-sub">一個 AIPM 主題的學習與實踐集散地。重點是「實際做得出可互動 Demo」，不是紙上談兵。內容來自目前正在進行中的一期課程，會逐步去識別化、結構化，變成通用的學習素材。</p>
+    <div class="grid grid-3">
+      <div class="card">
+        <span class="card-tag">定位</span>
+        <h3>實做優先</h3>
+        <p>每個主題都對應到一個「能動的東西」— MVP、架構圖、或可檢核的文件。</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">對象</span>
+        <h3>已在職 PM／工程師</h3>
+        <p>設定為資深人員的續修型內容，不是入門導論。需要一定程度的 LLM／工具實做經驗。</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">現況</span>
+        <h3>正在進行中</h3>
+        <p>內容來自目前一期課程的實際產出。公開資源以「去識別化檢視」為主，同期內容會逐步沉澱成通用素材。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="path">
+    <h2>8 週學習路徑</h2>
+    <p class="section-sub">從 AI 產品思維到 Live Demo 的通用骨架。實際進度隨每期略有調整。</p>
+    <div class="path">
+      <div class="path-week"><div class="path-body">
+        <div class="path-title">AI 產品思維與 PM 重新定位</div>
+        <div class="path-desc">AI 時代產品經理的角色變化、與傳統軟體 PM 的差異</div>
+      </div></div>
+      <div class="path-week"><div class="path-body">
+        <div class="path-title">市場分析與用戶研究（AI 輔助）</div>
+        <div class="path-desc">TAM／SAM／SOM、Persona、訪談腳本產生與分析</div>
+      </div></div>
+      <div class="path-week"><div class="path-body">
+        <div class="path-title">PRD 撰寫與 AI 協助段落標註</div>
+        <div class="path-desc">User Story／驗收條件、與 AI 共筆的責任歸屬</div>
+      </div></div>
+      <div class="path-week"><div class="path-body">
+        <div class="path-title">RAG 知識庫架構設計</div>
+        <div class="path-desc">PDF 切塊、Embedding、向量資料庫、檢索與引用控制</div>
+      </div></div>
+      <div class="path-week"><div class="path-body">
+        <div class="path-title">RPA 工作流與 Agentic Workflow</div>
+        <div class="path-desc">跨系統整合、HITL 簽核、多步驟代理的邊界與失敗處理</div>
+      </div></div>
+      <div class="path-week"><div class="path-body">
+        <div class="path-title">Vibe Coding 與 MVP 開發</div>
+        <div class="path-desc">Firebase Studio／Antigravity 實做、從 prompt 到可互動原型</div>
+      </div></div>
+      <div class="path-week"><div class="path-body">
+        <div class="path-title">資安與 CISSP CIA 視角檢視</div>
+        <div class="path-desc">機密性／完整性／可用性風險表、RAG 與 RPA 的威脅模型</div>
+      </div></div>
+      <div class="path-week"><div class="path-body">
+        <div class="path-title">Live Demo 與商業價值量化</div>
+        <div class="path-desc">3 分鐘情境劇本、ROI 推導、對外 CX／對內效率量化</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="framework">
+    <h2>5 項交付物通用框架</h2>
+    <p class="section-sub">任何 AI 產品專題都可以套用這組骨架自我檢核。</p>
+    <div class="grid grid-4">
+      <div class="card">
+        <span class="card-tag">01</span>
+        <h3>PRD</h3>
+        <p>市場分析、用戶畫像、功能規格，須註明 AI 協助段落。</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">02</span>
+        <h3>技術架構</h3>
+        <p>Mermaid 流程圖，必須包含 RAG 知識庫或 RPA 工作流。</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">03</span>
+        <h3>互動 MVP</h3>
+        <p>Vibe Coding 工具產出之可操作 Demo。</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">04</span>
+        <h3>商業價值</h3>
+        <p>對外：CX 改善；對內：效率量化效益。</p>
+      </div>
+      <div class="card" style="grid-column:span 2">
+        <span class="card-tag">05</span>
+        <h3>Live Demo · 可互動的展示</h3>
+        <p>不能只是影片，要能現場重現。建議 3 分鐘情境劇本：觸發 → AI 處理 → 結果 → 人工確認。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources">
+    <h2>公開資源</h2>
+    <p class="section-sub">以下頁面已完成去識別化處理，不含任何學員個資或課程方名稱。登入保護區域將用於僅限同期學員的內容。</p>
+    <div class="grid grid-2">
+      <a class="resource" href="/group2-demo">
+        <span class="resource-status status-open">Public Sample</span>
+        <h3>專題檢視範例</h3>
+        <p>以 5 項交付物框架對一組本期專題做落差分析，附 CISSP CIA 資安檢視與用語說明。可作為其他團隊自評的參考模板。</p>
+      </a>
+      <a class="resource" href="/group-x-mvp-status">
+        <span class="resource-status status-open">Public Service</span>
+        <h3>第三方檢視服務</h3>
+        <p>班代提供的中立專案狀態檢核。不代做、只做診斷，24–48 小時產出檢視結果。</p>
+      </a>
+      <div class="resource" style="cursor:default; opacity:.7">
+        <span class="resource-status status-gated">Login Required</span>
+        <h3>完整課程筆記</h3>
+        <p>每週重點整理、補充閱讀、延伸資源。即將以 LINE Login 控制存取，白名單為同期學員。</p>
+      </div>
+      <div class="resource" style="cursor:default; opacity:.7">
+        <span class="resource-status status-gated">Login Required</span>
+        <h3>同期社群討論</h3>
+        <p>作業交流、工具踩雷、業界應用案例分享。同樣採 LINE Login 白名單。</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:24px">
+      <span class="callout-icon">🔐</span>
+      <div><strong>存取控制分層：</strong>公開資源（已去敏）全世界可看；登入區則限同期學員，以 LINE Login 驗證白名單。這本身就是課程第 7 週 CISSP 主題的實做案例。</div>
+    </div>
+  </section>
+
+  <section id="anon">
+    <h2>匿名意見箱</h2>
+    <p class="section-sub">想說什麼都可以 — 批評、建議、想被教會的主題。<strong>不填名字就是匿名</strong>，我們不記錄 IP、不設 cookie、不追蹤你是誰。</p>
+    <form id="anon-form" class="card" style="max-width:720px">
+      <label style="display:block; margin-bottom:14px">
+        <div style="font-size:13px; color:var(--muted); margin-bottom:6px">名字（可留空 = 匿名）</div>
+        <input type="text" name="user_name" maxlength="40" placeholder="不填就是匿名"
+          style="width:100%; padding:10px 14px; background:var(--surface-2);
+            border:1px solid var(--border); border-radius:8px; color:var(--text);
+            font-family:inherit; font-size:14px">
+      </label>
+      <label style="display:block; margin-bottom:14px">
+        <div style="font-size:13px; color:var(--muted); margin-bottom:6px">想說的話（最多 2000 字）</div>
+        <textarea name="message" required maxlength="2000" rows="5"
+          placeholder="任何建議、問題、想看的主題..."
+          style="width:100%; padding:10px 14px; background:var(--surface-2);
+            border:1px solid var(--border); border-radius:8px; color:var(--text);
+            font-family:inherit; font-size:14px; resize:vertical; line-height:1.6"></textarea>
+      </label>
+      <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap">
+        <button type="submit" id="anon-submit"
+          style="padding:10px 22px; border-radius:8px; border:none; cursor:pointer;
+            background:var(--grad); color:#0b0d12; font-weight:700; font-size:14px;
+            font-family:inherit">送出</button>
+        <span id="anon-status" style="font-size:13px; color:var(--muted)"></span>
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin-top:16px; line-height:1.6;
+        padding-top:16px; border-top:1px dashed var(--border)">
+        🔐 <strong>隱私承諾：</strong>這個表單不記錄 IP、不放 cookie、不做指紋識別。
+        送出後只儲存你輸入的兩個欄位與時間戳。伺服器端為 Supabase，班代可見但不對外公開。
+      </div>
+    </form>
+  </section>
+
+  <section id="contact">
+    <h2>其他聯絡方式（非匿名）</h2>
+    <p class="section-sub">想具體討論合作、開課、時間地點、面授等細節，一律走 LINE 私訊，不在公開頁討論。</p>
+    <div class="grid grid-2">
+      <div class="card">
+        <span class="card-tag">LINE</span>
+        <h3>LINE 私訊</h3>
+        <p>任何較具體的問題都請走 LINE 私訊。公開頁專注分享已完成的素材，細節對話轉私下進行。</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">後續</span>
+        <h3>等登入區開放</h3>
+        <p>LINE Login 上線後，可透過公開表單提交意向，納入後續候補名單。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  document.getElementById('anon-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('anon-submit');
+    const status = document.getElementById('anon-status');
+    const form = e.target;
+    const data = {
+      user_name: form.user_name.value.trim() || 'Anonymous',
+      message: form.message.value.trim(),
+      source: 'aipm-landing',
+    };
+    if (!data.message) return;
+    btn.disabled = true; status.textContent = '送出中...'; status.style.color = 'var(--muted)';
+    try {
+      const r = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data),
+      });
+      if (r.ok) {
+        status.textContent = '✓ 已收到，謝謝';
+        status.style.color = 'var(--good)';
+        form.reset();
+      } else {
+        throw new Error('server');
+      }
+    } catch (err) {
+      status.textContent = '送出失敗，請稍後再試';
+      status.style.color = 'var(--bad)';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+
+<footer>
+  <div>AIPM · AI 產品管理 學習與實踐</div>
+  <div style="margin-top:8px">aipm.com.tw · 本站內容皆已去識別化處理 · 不含個資或課程方名稱</div>
+</footer>
+
+</body>
+</html>

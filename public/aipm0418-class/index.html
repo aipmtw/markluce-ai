@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIPM 0418 課程筆記 | MarkLuce.ai</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans TC',-apple-system,sans-serif;background:#fef9e7;color:#1f2937;min-height:100vh;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:2rem 1.25rem 4rem}
+nav{margin-bottom:1.25rem}
+nav a{color:#6b7280;text-decoration:none;font-size:.9rem;font-weight:600}
+nav a:hover{color:#d97706}
+.hero{background:linear-gradient(135deg,#fef3c7,#fde68a);border:3px dashed #92400e;border-radius:16px;padding:1.5rem 1.75rem;margin-bottom:1.75rem;position:relative}
+.hero::before{content:'📒';position:absolute;top:-18px;left:24px;background:#fef9e7;padding:0 .3rem;font-size:1.5rem}
+.hero h1{font-size:1.85rem;color:#78350f;margin-bottom:.3rem;letter-spacing:-.01em}
+.hero p{color:#92400e;font-size:.95rem;line-height:1.6}
+.tag{display:inline-block;background:#78350f;color:#fde68a;padding:.2rem .6rem;font-size:.7rem;font-weight:700;border-radius:999px;margin:.3rem .2rem 0 0;letter-spacing:.05em}
+
+.classes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
+.class-card{background:#fff;border:2px solid #78350f;border-radius:12px;padding:1.1rem 1.25rem;box-shadow:4px 4px 0 #78350f;text-decoration:none;color:#1f2937;transition:transform .15s;display:block;position:relative}
+.class-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #78350f}
+.class-card.pending{background:#f3f4f6;opacity:.75;pointer-events:none}
+.class-num{font-size:.75rem;font-weight:800;color:#d97706;letter-spacing:.1em;margin-bottom:.3rem}
+.class-title{font-size:1.05rem;font-weight:700;margin-bottom:.4rem;color:#78350f;line-height:1.4}
+.class-meta{font-size:.82rem;color:#6b7280;line-height:1.5}
+.speaker{display:inline-block;margin-top:.4rem;font-size:.78rem;color:#92400e;font-weight:600}
+.status{position:absolute;top:.75rem;right:.75rem;font-size:.65rem;padding:.15rem .5rem;border-radius:999px;font-weight:700;letter-spacing:.05em}
+.status.ready{background:#d1fae5;color:#065f46}
+.status.pending{background:#fef3c7;color:#92400e}
+
+.legend{margin-top:1.75rem;padding:1rem 1.25rem;background:#fff;border:2px solid #d97706;border-radius:12px;font-size:.85rem;color:#92400e;line-height:1.6}
+.legend strong{color:#78350f}
+.legend a{color:#dc2626;font-weight:700}
+.note-duplicate{margin-top:1.5rem;padding:.8rem 1rem;background:#fef3c7;border-left:4px solid #d97706;border-radius:4px;font-size:.85rem;color:#78350f}
+
+/* Corrections section */
+.corrections{margin-top:2rem;background:#fff;border:3px solid #991b1b;border-radius:14px;padding:1.5rem 1.75rem;box-shadow:5px 5px 0 #991b1b}
+.corrections h2{font-size:1.4rem;color:#7f1d1d;margin-bottom:.3rem;letter-spacing:-.01em}
+.corrections .intro{color:#991b1b;font-size:.9rem;margin-bottom:1.2rem;line-height:1.6}
+.corrections h3{font-size:1rem;color:#7f1d1d;margin:1.3rem 0 .5rem;padding:.4rem .7rem;background:#fee2e2;border-left:4px solid #991b1b;border-radius:0 6px 6px 0}
+.corrections h4{font-size:.92rem;color:#92400e;margin:.8rem 0 .3rem;font-weight:700}
+.corrections table{width:100%;border-collapse:collapse;margin:.5rem 0;font-size:.82rem;border:1.5px solid #78350f;border-radius:6px;overflow:hidden}
+.corrections th,.corrections td{padding:.45rem .6rem;text-align:left;border-bottom:1px solid #fde68a;vertical-align:top}
+.corrections th{background:#78350f;color:#fff;font-weight:700;font-size:.78rem}
+.corrections tr:last-child td{border-bottom:none}
+.corrections td:first-child{font-weight:700;background:#fef3c7;color:#78350f;white-space:nowrap}
+.corrections ul,.corrections ol{margin:.4rem 0 .8rem 1.3rem;font-size:.88rem;color:#1f2937}
+.corrections ol li,.corrections ul li{margin-bottom:.3rem;line-height:1.6}
+.corrections .wrong{color:#dc2626;text-decoration:line-through}
+.corrections .right{color:#059669;font-weight:700}
+.corrections .src{color:#6b7280;font-size:.75rem}
+.corrections code{background:#fef3c7;color:#b91c1c;font-size:.82rem;padding:.1rem .3rem;border-radius:3px;font-family:'SF Mono',monospace}
+.action-list{list-style:none!important;margin-left:0!important;padding:0!important}
+.action-list li{background:#d1fae5;border:1.5px solid #10b981;border-radius:6px;padding:.4rem .7rem;margin-bottom:.3rem;font-size:.85rem}
+.action-list li::before{content:'✓ ';color:#059669;font-weight:900}
+.insight-box{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:2px solid #1e40af;border-radius:8px;padding:.9rem 1.1rem;margin:.8rem 0;color:#1e3a8a;font-size:.88rem}
+.insight-box strong{color:#1e40af}
+.insight-box ol{margin-left:1.2rem}
+.insight-box li{margin-bottom:.35rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">← MarkLuce.ai</a></nav>
+
+<div class="hero">
+  <h1>AIPM 0418 · 課程筆記</h1>
+  <p>經理人 AI PM 班 第一期（AM151）· Day 2 · 2026-04-18（週六）· Mark 整理</p>
+  <div style="margin-top:.6rem">
+    <span class="tag">蔡政霖</span>
+    <span class="tag">曾思遠</span>
+    <span class="tag">Claude Skills</span>
+    <span class="tag">AI Agent</span>
+    <span class="tag">Harness Engineer</span>
+    <span class="tag">Prompt / Vibe Coding</span>
+  </div>
+</div>
+
+<div class="classes">
+  <a href="/aipm0418-class/1/" class="class-card">
+    <span class="status ready">READY</span>
+    <div class="class-num">LESSON 01 · 09:00–10:20</div>
+    <div class="class-title">AI 溝通術：用提示指令高效產出企劃內容</div>
+    <div class="class-meta">Gen AI 原理、Skills、LLM 引擎對比、黃仁勳願景、國泰 GAI 架構、Taiwan 開源模型</div>
+    <div class="speaker">蔡政霖（Dentsu Staff AI Engineer / AIA 前技術總監）· ~80 分</div>
+  </a>
+
+  <a href="/aipm0418-class/3/" class="class-card">
+    <span class="status ready">READY</span>
+    <div class="class-num">LESSON 03 · 10:35–12:00</div>
+    <div class="class-title">提示工程與 Gemini 多模態應用</div>
+    <div class="class-meta">LLM 能力提升 3 法、AI 未來 4 階段、Agent 四件套、MCP/A2A、CRISPE、Harness Engineer</div>
+    <div class="speaker">蔡政霖（Dentsu Staff AI Engineer / AIA 前技術總監）· ~85 分</div>
+  </a>
+
+  <a href="/aipm0418-class/5/" class="class-card">
+    <span class="status ready">READY</span>
+    <div class="class-num">LESSON 05 · 13:30–15:30</div>
+    <div class="class-title">產品開發企劃</div>
+    <div class="class-meta">AI 步驟拆解、產品 PM vs 專案 PM、Notion、Markdown/JSON/HTML/Mermaid、Vibe Coding、GEO、MCP</div>
+    <div class="speaker">曾思遠 Giga（Nautilus AI CEO, AIA AI x PM 講師）· ~120 分</div>
+  </a>
+</div>
+
+<div class="note-duplicate">
+  💡 原本 6 段錄音是兩台裝置各錄 3 堂課（1=2、3=4、5=6）— 筆記整理為 3 課，重複的錄音頁面會自動跳轉。
+</div>
+
+<div class="legend">
+  <strong>📝 關於這份筆記</strong><br>
+  來源：AIPM0418 語音記錄 + 講師 PDF 講義<br>
+  轉錄：faster-whisper large-v3（GPU）｜整理：Claude Opus 4.7｜校對：比對 PDF 講義修正人名、術語<br>
+  校對清單：<code>correct-list.md</code>（在原始資料夾）<br>
+  每一課都是「重點摘要 + 金句 + 應用建議」的精讀版，不是逐字稿。
+</div>
+
+<div class="corrections">
+<h2>📝 轉錄修正清單</h2>
+<p class="intro">來源：faster-whisper large-v3 語音轉錄 × 講者 PDF 講義 × agenda 官方時程表，三方交叉核對的所有錯誤與補充。</p>
+
+<h3>📅 課程全貌（三方核對）</h3>
+<ul>
+  <li>正式課程名稱：<strong>經理人 AI PM 班｜第一期（AM151）Day 2</strong>（2026-04-18）</li>
+  <li>主辦：台灣人工智慧學校（AIA）</li>
+</ul>
+<h4>Day 2 時程表</h4>
+<table>
+  <tr><th>時段</th><th>正式課名</th><th>講師</th><th>錄音</th></tr>
+  <tr><td>09:00–10:20</td><td><strong>AI 溝通術：用提示指令高效產出企劃內容</strong></td><td>蔡政霖</td><td>File 1 / 2</td></tr>
+  <tr><td>10:35–12:00</td><td><strong>提示工程與 Gemini 多模態應用</strong></td><td>蔡政霖</td><td>File 3 / 4</td></tr>
+  <tr><td>13:30–15:30</td><td><strong>產品開發企劃</strong></td><td>曾思遠 Giga</td><td>File 5 / 6</td></tr>
+</table>
+<p style="font-size:.8rem;color:#6b7280;margin-top:.5rem">錄音重複模式：兩台裝置同時錄 → 1=2 / 3=4 / 5=6（備份）</p>
+
+<h3>A. 講者資訊嚴重錯誤（Lesson 01）</h3>
+<table>
+<tr><th>項目</th><th>轉錄 / 原寫</th><th>正確</th><th>來源</th></tr>
+<tr><td>姓名</td><td class="wrong">蔡哲銘</td><td class="right">蔡政霖</td><td class="src">PDF p.2</td></tr>
+<tr><td>前職</td><td class="wrong">主委學校前技術總監</td><td class="right">台灣人工智慧學校（AIA）前技術總監</td><td class="src">PDF p.2</td></tr>
+<tr><td>現職</td><td class="wrong">電通集團 AI 研究主管</td><td class="right">Dentsu Staff AI Engineer</td><td class="src">PDF p.2</td></tr>
+<tr><td>學位</td><td class="wrong">腦科學博士</td><td class="right">博士候選人（非已畢業博士）</td><td class="src">PDF p.2</td></tr>
+<tr><td>額外身分</td><td class="wrong">—</td><td class="right">長庚醫院 IRB 獨立諮詢專家</td><td class="src">PDF p.2</td></tr>
+</table>
+
+<h3>B. 人名、公司錯誤</h3>
+<table>
+<tr><th>轉錄</th><th>正確</th><th>出處</th></tr>
+<tr><td class="wrong">黃榮勳</td><td class="right">黃仁勳（Jensen Huang）</td><td class="src">PDF p.5</td></tr>
+<tr><td class="wrong">薩琼 / 周艾夢</td><td class="right">藤子·F·不二雄（Doraemon 作者）47 年前的 AI 構想</td><td class="src">PDF p.4</td></tr>
+<tr><td class="wrong">薛孟乃建議的 4 方向</td><td class="right">Gemini Prompt Framework：角色 / 任務 / 背景 / 格式</td><td class="src">PDF p.32</td></tr>
+<tr><td class="wrong">薄比斯 assistant</td><td class="right">Office 早期的 Clippy（回形針小幫手）</td><td class="src">PDF p.23</td></tr>
+<tr><td class="wrong">NTT 接口</td><td class="right">MCP（Model Context Protocol）</td><td class="src">PDF p.27</td></tr>
+</table>
+
+<h3>C. 漏寫 / 錯寫的關鍵資料點</h3>
+<h4>Lesson 01（上半場）</h4>
+<ol>
+  <li>lmarena.ai 盲測排名（2026-04-15）— PDF p.11 我完全沒寫</li>
+  <li>LLM 使用量（2026-02）：ChatGPT 53.5B / Gemini 21.1B / Claude 2.9B … — PDF p.13</li>
+  <li>市佔變化：ChatGPT 65.8%→61.7%（下降）、Gemini 20.7%→24.4%（急起直追）</li>
+  <li>台灣開源模型：TAIDE / Gemma-3-4B-T1-it / ACE-1-24B / Breeze 3 — PDF p.14</li>
+  <li>Spotify 引用（非 Google）：「最強開發者自 2025-12 起未寫過一行 code」</li>
+  <li>OpenAI Codex：<strong>95% SWE 100% 使用 Codex 做 PR</strong>（非「95% 使用」）</li>
+  <li>金融業：具體為「國泰 GAI 戰略與技術框架」— PDF p.8</li>
+</ol>
+<h4>Lesson 03（下半場）</h4>
+<ol>
+  <li>提升 LLM 能力 3 法：Prompt / RAG / Fine-tuning</li>
+  <li>AI 未來藍圖 4 階段：Embedded → Copilot → Agent → Society</li>
+  <li>AI Agent 架構：Planner / Tool Use / Memory / Executor</li>
+  <li>Google A2A Protocol（不只生活例子的冰箱 agent）</li>
+  <li>CRISPE Framework：Capacity/Insight/Statement/Personality/Experiment</li>
+  <li>Prompting 技巧：Zero/One/Few-shot、Chain-of-Thought、Chat Prompt Chaining</li>
+  <li>Top-p / Top-k（除 Temperature 外）</li>
+  <li>Context Engineering：RAG 解決 24.2% 準確率下降</li>
+  <li><strong>Harness Engineer（馬具工程）</strong> — 整塊核心概念原本完全漏掉</li>
+  <li>4 種 Engineer 演進：Prompt → Context → Agentic → Harness</li>
+  <li>Agent 框架：LangGraph、CrewAI、AutoGen、OpenAI Swarm</li>
+</ol>
+
+<h3>D. 被誤轉錄的術語</h3>
+<table>
+<tr><th>語音聽成</th><th>實際意思</th></tr>
+<tr><td class="wrong">農家 / 農哥</td><td class="right">LLM</td></tr>
+<tr><td class="wrong">景號</td><td class="right">井號 #</td></tr>
+<tr><td class="wrong">貓道</td><td class="right">Markdown</td></tr>
+<tr><td class="wrong">傑森</td><td class="right">JSON</td></tr>
+<tr><td class="wrong">German / Germanline</td><td class="right">Gemini</td></tr>
+<tr><td class="wrong">零點級搜尋</td><td class="right">Zero Click Search</td></tr>
+</table>
+
+<h3>E. 曾思遠 Session 5 重點（已整合進 Lesson 05）</h3>
+<ul>
+  <li>AI 步驟拆解：選模型 → Prompt → RAG → RPA/Vibe Coding</li>
+  <li>產品 PM vs 專案 PM：做什麼 vs 怎麼做</li>
+  <li>四種文件格式：Markdown / JSON / HTML / Mermaid</li>
+  <li><strong>LINE 請假小幫手 JSON 練習 — 正是 aipm048 的原型！</strong></li>
+  <li>GEO（Generative Engine Optimization）/ Zero Click Search / MCP 友善設計</li>
+  <li>開場故事：Canva 牛奶挑戰遊戲｜公司案例：「點點學姐」內部 AI agent</li>
+</ul>
+
+<h3>F. 動作清單（全部已完成）</h3>
+<ul class="action-list">
+  <li>建立 <code>correct-list.md</code> — 列出所有錯誤與對照</li>
+  <li>更新 <code>/aipm0418-class/1/</code> — 蔡政霖、AIA、藤子不二雄、黃仁勳、Spotify、國泰 GAI、Taiwan 開源模型、lmarena</li>
+  <li>更新 <code>/aipm0418-class/3/</code> — Harness Engineer、4 種 Engineer 演進、CRISPE、Zero/One/Few-shot、AI 未來藍圖</li>
+  <li>建立 <code>/aipm0418-class/5/</code> — 曾思遠 產品開發企劃（融合 PDF + 錄音）</li>
+  <li>Lesson 2 / 4 / 6 → 自動跳轉 1 / 3 / 5（備份錄音）</li>
+  <li>用 agenda 官方課名更新所有 Lesson 標題</li>
+  <li>課名統一為「經理人 AI PM 班｜第一期（AM151）」</li>
+</ul>
+
+<h3>💡 關鍵學習心得</h3>
+<div class="insight-box">
+<ol>
+  <li><strong>轉錄 ≠ 正確</strong> — faster-whisper 在中文人名上準確率有限</li>
+  <li><strong>PDF 講義是 Ground Truth</strong> — 人名、數字、專有名詞必須以講義為準</li>
+  <li><strong>Agenda 比 PDF 標題更可信</strong> — agenda 上的正式課名才是官方分段</li>
+  <li><strong>備份錄音的價值</strong> — 主錄音轉錯時可以交叉核對</li>
+  <li><strong>三層校對：語音 → 講義 → 議程</strong>，每多一層來源就高一層正確率</li>
+</ol>
+</div>
+
+<p style="text-align:center;margin-top:1rem;font-size:.85rem;color:#6b7280">
+完整獨立頁面：<a href="/aipm0418-class/corrections/" style="color:#dc2626;font-weight:700">轉錄修正清單（完整版）→</a>
+</p>
+</div>
+
+</div>
+</body>
+</html>

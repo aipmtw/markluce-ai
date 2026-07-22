@@ -16,7 +16,12 @@ module.exports = async (req, res) => {
 
     const r = await fetch(url, { headers });
     const data = await r.json();
-    return res.json(data[0] || null);
+    const row = data[0];
+    if (!row) return res.json(null);
+    if (typeof row.headlines === 'string') {
+      try { row.headlines = JSON.parse(row.headlines); } catch (_) {}
+    }
+    return res.json(row);
   }
 
   if (req.method === 'POST') {

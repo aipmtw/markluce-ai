@@ -13,5 +13,10 @@ module.exports = async (req, res) => {
     }
   );
   const data = await r.json();
+  for (const row of data) {
+    if (typeof row.headlines === 'string') {
+      try { row.headlines = JSON.parse(row.headlines); } catch (_) {}
+    }
+  }
   res.json(data);
 };

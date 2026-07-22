@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>第 2 組 期末提案 v1.2 — 檢視與建議</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0d12; --surface:#12151d; --surface-2:#1a1f2b; --border:#242b3a;
+    --text:#e8ecf2; --muted:#8a93a6; --accent:#6aa9ff; --accent-2:#a78bfa;
+    --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+    --grad:linear-gradient(135deg,#6aa9ff 0%,#a78bfa 50%,#f472b6 100%);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Noto Sans TC",system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.75;
+    font-feature-settings:"palt"; -webkit-font-smoothing:antialiased;
+  }
+  code,.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.9em}
+  code{background:var(--surface-2); padding:2px 6px; border-radius:4px; color:#c4d0ff}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .layout{display:grid; grid-template-columns:260px 1fr; max-width:1400px; margin:0 auto; gap:48px}
+  @media (max-width:960px){ .layout{grid-template-columns:1fr; gap:0} .toc{display:none} }
+
+  /* Hero */
+  .hero{
+    background:var(--grad); color:#0b0d12; padding:64px 48px 80px;
+    position:relative; overflow:hidden;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 80% 20%, rgba(255,255,255,.3), transparent 50%);
+  }
+  .hero-inner{max-width:1400px; margin:0 auto; position:relative; z-index:1}
+  .hero .eyebrow{
+    display:inline-block; padding:6px 14px; border-radius:999px;
+    background:rgba(0,0,0,.25); color:#fff; font-size:13px; font-weight:500;
+    letter-spacing:.05em; margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:clamp(28px,4.5vw,48px); font-weight:900; margin:0 0 16px;
+    letter-spacing:-.01em; line-height:1.25;
+  }
+  .hero .subtitle{font-size:18px; opacity:.85; margin:0 0 32px; max-width:720px}
+  .meta{display:flex; flex-wrap:wrap; gap:12px}
+  .meta-item{
+    background:rgba(0,0,0,.2); color:#fff; padding:8px 14px; border-radius:8px;
+    font-size:13px; backdrop-filter:blur(8px);
+  }
+  .meta-item strong{margin-right:6px; opacity:.7; font-weight:500}
+
+  /* TOC */
+  .toc{
+    position:sticky; top:24px; align-self:start;
+    padding:24px 0 24px 32px; max-height:calc(100vh - 48px); overflow-y:auto;
+  }
+  .toc-title{
+    font-size:12px; font-weight:700; color:var(--muted);
+    letter-spacing:.12em; text-transform:uppercase; margin-bottom:12px;
+  }
+  .toc ul{list-style:none; padding:0; margin:0; border-left:1px solid var(--border)}
+  .toc li a{
+    display:block; padding:8px 16px; color:var(--muted);
+    font-size:14px; border-left:2px solid transparent; margin-left:-1px;
+    transition:all .15s;
+  }
+  .toc li a:hover, .toc li a.active{
+    color:var(--text); border-left-color:var(--accent); text-decoration:none;
+  }
+
+  /* Main */
+  main{padding:48px 48px 120px; max-width:900px}
+  @media (max-width:960px){ main{padding:32px 20px 80px} }
+
+  section{margin-bottom:56px}
+  h2{
+    font-size:24px; font-weight:700; margin:0 0 20px;
+    padding-bottom:12px; border-bottom:1px solid var(--border);
+    display:flex; align-items:center; gap:12px;
+  }
+  h2 .icon{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:32px; height:32px; border-radius:8px;
+    background:var(--grad); color:#0b0d12; font-size:16px; flex-shrink:0;
+  }
+  h3{
+    font-size:18px; font-weight:700; margin:24px 0 12px;
+    display:flex; align-items:center; gap:10px;
+  }
+
+  /* Cards */
+  .card{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:12px; padding:24px; margin-bottom:16px;
+  }
+  .card-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:12px; flex-wrap:wrap}
+  .card-title{font-size:17px; font-weight:700; margin:0}
+
+  /* Badges */
+  .badge{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600;
+    background:var(--surface-2); color:var(--muted);
+  }
+  .badge.bad{background:rgba(248,113,113,.15); color:var(--bad)}
+  .badge.warn{background:rgba(251,191,36,.15); color:var(--warn)}
+  .badge.good{background:rgba(52,211,153,.15); color:var(--good)}
+
+  /* Progress bar */
+  .progress{
+    height:6px; background:var(--surface-2); border-radius:999px;
+    overflow:hidden; margin:10px 0 16px;
+  }
+  .progress > span{
+    display:block; height:100%; border-radius:999px;
+    background:var(--grad); transition:width .6s;
+  }
+
+  ul{padding-left:20px; margin:8px 0}
+  li{margin-bottom:6px}
+
+  /* Source list */
+  .sources{display:grid; gap:12px}
+  .source{
+    display:flex; gap:14px; padding:16px; background:var(--surface);
+    border:1px solid var(--border); border-radius:10px;
+  }
+  .source-num{
+    flex-shrink:0; width:28px; height:28px; border-radius:8px;
+    background:var(--grad); color:#0b0d12; font-weight:700;
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+  }
+  .source-body{flex:1; min-width:0}
+  .source-file{font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--accent); word-break:break-all}
+  .source-desc{font-size:14px; color:var(--muted); margin-top:4px}
+
+  /* Priority list */
+  .priority{counter-reset:prio}
+  .prio-item{
+    counter-increment:prio;
+    display:flex; gap:16px; padding:18px 20px;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; margin-bottom:12px;
+  }
+  .prio-item::before{
+    content:counter(prio); flex-shrink:0;
+    width:36px; height:36px; border-radius:50%;
+    background:var(--grad); color:#0b0d12; font-weight:900;
+    display:flex; align-items:center; justify-content:center; font-size:16px;
+  }
+  .prio-body{flex:1}
+  .prio-title{font-weight:700; margin-bottom:4px}
+  .prio-desc{font-size:14px; color:var(--muted)}
+
+  /* Glossary */
+  .glossary-group{margin-bottom:28px}
+  .glossary-group h3{
+    font-size:14px; font-weight:700; color:var(--muted);
+    letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px;
+    padding-bottom:6px; border-bottom:1px dashed var(--border);
+  }
+  .glossary-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px}
+  .glossary-item{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:8px; padding:12px 14px;
+  }
+  .glossary-term{font-family:"JetBrains Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+  .glossary-en{font-size:12px; color:var(--muted); margin-left:6px}
+  .glossary-def{font-size:13px; color:var(--text); margin-top:4px; line-height:1.6}
+
+  /* Callout */
+  .callout{
+    background:linear-gradient(135deg, rgba(106,169,255,.08), rgba(167,139,250,.08));
+    border:1px solid rgba(106,169,255,.3); border-radius:10px;
+    padding:16px 20px; margin:16px 0; display:flex; gap:12px;
+  }
+  .callout-icon{flex-shrink:0; font-size:20px}
+  .callout-body{flex:1; font-size:14px}
+
+  /* Author card */
+  .author-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:12px;
+    padding:20px 24px; display:grid; gap:10px;
+  }
+  .author-row{display:flex; gap:12px; font-size:14px}
+  .author-label{flex-shrink:0; color:var(--muted); width:80px; font-weight:500}
+  .author-value{flex:1}
+  ol.method{margin:6px 0 0; padding-left:20px}
+  ol.method li{font-size:14px; color:var(--text); line-height:1.7}
+
+  footer{
+    margin-top:64px; padding-top:32px; border-top:1px solid var(--border);
+    color:var(--muted); font-size:13px; text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">第 2 組 · 期末專題</span>
+    <h1>期末提案 v1.2 — 檢視與建議</h1>
+    <p class="subtitle">針對「AI 智鏈生存遊戲：電子製造業供應鏈應變」提案，依交付物評分要求進行逐項落差分析與優先排序建議。</p>
+    <div class="meta">
+      <span class="meta-item"><strong>Date</strong>2026-04-19</span>
+      <span class="meta-item"><strong>Sources</strong>3 份</span>
+      <span class="meta-item"><strong>Status</strong>待人工審閱</span>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="toc">
+    <div class="toc-title">目錄</div>
+    <ul>
+      <li><a href="#sources">來源與產出方式</a></li>
+      <li><a href="#have">目前已具備</a></li>
+      <li><a href="#gaps">落差分析</a></li>
+      <li><a href="#priority">優先下一步</a></li>
+      <li><a href="#glossary">用語說明</a></li>
+    </ul>
+  </aside>
+
+  <main>
+
+    <section id="sources">
+      <h2><span class="icon">📚</span>來源與產出方式</h2>
+      <div class="sources">
+        <div class="source">
+          <span class="source-num">1</span>
+          <div class="source-body">
+            <div class="source-file">期末提案簡報-v1.2.docx</div>
+            <div class="source-desc">第 2 組目前簡報 v1.2</div>
+          </div>
+        </div>
+        <div class="source">
+          <span class="source-num">2</span>
+          <div class="source-body">
+            <div class="source-file">8 週課程表.html</div>
+            <div class="source-desc">課程 8 週進度 — 判斷交付物技術對應範圍</div>
+          </div>
+        </div>
+        <div class="source">
+          <span class="source-num">3</span>
+          <div class="source-body">
+            <div class="source-file">mark-note.md</div>
+            <div class="source-desc">交付物（Deliverables）評分要求</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:28px">作者／產出方式</h3>
+      <div class="author-card">
+        <div class="author-row"><span class="author-label">模型</span><span class="author-value">Anthropic Claude Opus 4.7（claude-opus-4-7，1M context）於 Claude Code CLI 執行</span></div>
+        <div class="author-row"><span class="author-label">操作者</span><span class="author-value">Mark</span></div>
+        <div class="author-row"><span class="author-label">方法</span>
+          <span class="author-value">
+            <ol class="method">
+              <li>以 python-docx 抽取 <code>.docx</code> 全部段落與表格</li>
+              <li>讀取 <code>mark-note.md</code> 取得交付物評分要求（PRD／技術架構／MVP／成果展示／Live Demo 五項）</li>
+              <li>以五項交付物為 checklist，對 v1.2 簡報逐項落差比對（完成度 % 為主觀估值）</li>
+              <li>依「評分權重」與「完成耗時」兩軸排出 Top 5 優先下一步</li>
+              <li>補上供應鏈／系統／AI／商業／角色五類用語說明</li>
+            </ol>
+          </span>
+        </div>
+        <div class="callout" style="margin-top:8px">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-body">產出內容 100% 由 AI 協助生成，需經人工審閱、修正後採用。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="have">
+      <h2><span class="icon">✅</span>目前簡報已具備內容（v1.2）</h2>
+      <div class="card">
+        <ul>
+          <li>故事性強：供應鏈「生存遊戲」敘事框架</li>
+          <li>具體痛點與數字（缺料造成 <strong>15%</strong> 營收損失、EOL Email 滯留 <strong>3 天</strong>、RD 串列作業延遲 <strong>2–4 週</strong>）</li>
+          <li>兩大技術支柱：<strong>Datasheet 檢索器</strong>（NLP／OCR／向量比對）＋ <strong>RPA 流程編排層</strong></li>
+          <li>1 張 Mermaid 流程圖（串列 30 天 → 並行 7 天）</li>
+          <li>Phase 1／Phase 2 路線圖（M1–M9）</li>
+          <li>ROI 指標：行政工時 48h→2.5h、TTM 縮短 14 天、呆滯料 −35%、18 個月 ROI 6.5×</li>
+          <li>非常詳盡的 NPI 與 MP 二次料導入 SOP（Step 1–4）</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="gaps">
+      <h2><span class="icon">🔍</span>與交付物要求的落差分析</h2>
+
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">① 產品需求文件 PRD</h3>
+          <span class="badge warn">完成度 ~40%</span>
+        </div>
+        <div class="progress"><span style="width:40%"></span></div>
+        <ul>
+          <li><strong>缺</strong>：市場分析（TAM／SAM／SOM，競品分析：SAP Ariba／Siemens Teamcenter AI／Jabil 類內部工具）</li>
+          <li><strong>缺</strong>：提煉過的用戶畫像 — SOP 雖列出 PM／RD／採購／FPM／SPM／PJM／研管／生管／物控，但沒有 persona 卡片（目標、痛點、成功指標）</li>
+          <li><strong>缺</strong>：功能規格（User Story ＋ 驗收條件）</li>
+          <li><strong>缺</strong>：「由 AI 協助生成」章節標註（評分要求）</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">② 技術架構與流程圖</h3>
+          <span class="badge bad">完成度 ~20%</span>
+        </div>
+        <div class="progress"><span style="width:20%"></span></div>
+        <p style="margin:0 0 8px">目前只有 1 張高階 Mermaid。還需要：</p>
+        <ul>
+          <li>系統架構圖（元件、資料流）</li>
+          <li><strong>RAG 管線</strong>：PDF → chunk → 向量嵌入 → 向量資料庫 → 檢索 → LLM → 結構化規格差異比對</li>
+          <li><strong>RPA 工作流程</strong>：SAP ↔ Agile PLM 同步與 HITL 簽核 swimlane</li>
+          <li>1+2 並行模式的 Sequence Diagram</li>
+          <li>Step 1–4 的 SOP 應轉為 swimlane（前 vs. 後對照），不要用大段文字</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">③ 互動式 MVP</h3>
+          <span class="badge bad">完成度 0%</span>
+        </div>
+        <div class="progress"><span style="width:0%"></span></div>
+        <ul>
+          <li>最容易展示的切片 = <strong>Datasheet 檢索器</strong>：上傳 2 份 PDF → 「找出含 X 成分的替代料」→ 規格並排比對 → 自動產出 BOM 變更草稿</li>
+          <li>用 Firebase Studio／Antigravity 開發（符合評分要求的 Vibe Coding 工具）</li>
+          <li>時間允許的第二切片：RPA 模擬 —「核可替代料」按鈕 → 模擬 SAP 與 PLM 更新 → Teams 通知</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">④ 專題成果展示</h3>
+          <span class="badge warn">完成度 ~60%</span>
+        </div>
+        <div class="progress"><span style="width:60%"></span></div>
+        <ul>
+          <li>有數字但缺來源，請補「如何推導」（樣本數、基準資料）</li>
+          <li><strong>對外客戶價值（CX）較弱</strong>：建議補「客戶準交率 ↑ X%」／「ECN 週期縮短 = 加速客戶認證」</li>
+          <li>建議新增前後對照表</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">⑤ Live Demo</h3>
+          <span class="badge bad">完成度 0%</span>
+        </div>
+        <div class="progress"><span style="width:0%"></span></div>
+        <ul>
+          <li>需要一段 3 分鐘劇本化情境：「晶片 EOL Email 進來 → AI 自動找替代料 → 規格差異比對 → RPA 同步 BOM → 主管一鍵簽核」</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="priority">
+      <h2><span class="icon">🎯</span>優先建議的 5 個下一步</h2>
+      <div class="priority">
+        <div class="prio-item"><div class="prio-body">
+          <div class="prio-title">先做 MVP（Firebase Studio 上做 Datasheet 檢索器）</div>
+          <div class="prio-desc">一次解鎖 ③ 與 ⑤，是評分權重最大的項目</div>
+        </div></div>
+        <div class="prio-item"><div class="prio-body">
+          <div class="prio-title">把 Step 1–4 SOP 轉為「前後對照 swimlane Mermaid」</div>
+          <div class="prio-desc">讓你們的領域深度轉成視覺說服力</div>
+        </div></div>
+        <div class="prio-item"><div class="prio-body">
+          <div class="prio-title">補 3 張用戶畫像卡</div>
+          <div class="prio-desc">採購 Amy／PM David／RD Kevin — 目標、痛點、KPI</div>
+        </div></div>
+        <div class="prio-item"><div class="prio-body">
+          <div class="prio-title">補 RAG 架構圖 Mermaid</div>
+          <div class="prio-desc">評分要求明列的交付項目</div>
+        </div></div>
+        <div class="prio-item"><div class="prio-body">
+          <div class="prio-title">所有 AI 協助生成的投影片加「AI 協助生成」頁腳標註</div>
+          <div class="prio-desc">評分要求</div>
+        </div></div>
+      </div>
+      <div class="callout">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body"><strong>建議切入點：</strong>#2（swimlane Mermaid）與 #4（RAG 架構圖）是快速可完成項目；之後再收斂 MVP 範圍。</div>
+      </div>
+    </section>
+
+    <section id="glossary">
+      <h2><span class="icon">📖</span>用語說明</h2>
+
+      <div class="glossary-group">
+        <h3>供應鏈／製造流程類</h3>
+        <div class="glossary-grid">
+          <div class="glossary-item"><span class="glossary-term">EOL</span><span class="glossary-en">End of Life</span><div class="glossary-def">產品／料件生命週期終止；原廠宣告停產，需找替代料</div></div>
+          <div class="glossary-item"><span class="glossary-term">BOM</span><span class="glossary-en">Bill of Materials</span><div class="glossary-def">物料清單；一台產品所有零件的結構化列表</div></div>
+          <div class="glossary-item"><span class="glossary-term">ECN</span><span class="glossary-en">Engineering Change Notice</span><div class="glossary-def">工程變更通知；正式公告 BOM／規格變更的文件</div></div>
+          <div class="glossary-item"><span class="glossary-term">ECR</span><span class="glossary-en">Engineering Change Request</span><div class="glossary-def">工程變更申請；ECN 的前置申請</div></div>
+          <div class="glossary-item"><span class="glossary-term">NPI</span><span class="glossary-en">New Product Introduction</span><div class="glossary-def">新產品導入；量產前的階段</div></div>
+          <div class="glossary-item"><span class="glossary-term">MP</span><span class="glossary-en">Mass Production</span><div class="glossary-def">量產階段</div></div>
+          <div class="glossary-item"><span class="glossary-term">2nd Source</span><span class="glossary-en">Second Source</span><div class="glossary-def">二次料源，同規格的替代供應商料件</div></div>
+          <div class="glossary-item"><span class="glossary-term">Running Change</span><span class="glossary-en">在製轉換</span><div class="glossary-def">不停產情況下切換料件</div></div>
+          <div class="glossary-item"><span class="glossary-term">IQC</span><span class="glossary-en">Incoming Quality Control</span><div class="glossary-def">進料品管</div></div>
+          <div class="glossary-item"><span class="glossary-term">DQA</span><span class="glossary-en">Design Quality Assurance</span><div class="glossary-def">設計品質保證</div></div>
+          <div class="glossary-item"><span class="glossary-term">SIT</span><span class="glossary-en">System Integration Test</span><div class="glossary-def">系統整合測試</div></div>
+          <div class="glossary-item"><span class="glossary-term">SKU</span><span class="glossary-en">Stock Keeping Unit</span><div class="glossary-def">最小存貨單位</div></div>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <h3>企業系統類</h3>
+        <div class="glossary-grid">
+          <div class="glossary-item"><span class="glossary-term">SAP</span><span class="glossary-en">ERP brand</span><div class="glossary-def">市占率最高的 ERP 品牌；管訂單／採購／庫存</div></div>
+          <div class="glossary-item"><span class="glossary-term">PLM</span><span class="glossary-en">Product Lifecycle Management</span><div class="glossary-def">產品生命週期管理系統，例如 Agile、Teamcenter；管規格／BOM／文件版本</div></div>
+          <div class="glossary-item"><span class="glossary-term">ERP</span><span class="glossary-en">Enterprise Resource Planning</span><div class="glossary-def">企業資源規劃，SAP 屬此類</div></div>
+          <div class="glossary-item"><span class="glossary-term">Agile</span><span class="glossary-en">Oracle Agile PLM</span><div class="glossary-def">常見的 PLM 系統品牌</div></div>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <h3>AI／自動化類</h3>
+        <div class="glossary-grid">
+          <div class="glossary-item"><span class="glossary-term">RPA</span><span class="glossary-en">Robotic Process Automation</span><div class="glossary-def">機器人流程自動化；跨系統資料搬運與流程自動化</div></div>
+          <div class="glossary-item"><span class="glossary-term">RAG</span><span class="glossary-en">Retrieval-Augmented Generation</span><div class="glossary-def">檢索增強生成；讓 LLM 能查企業內部知識庫再回答</div></div>
+          <div class="glossary-item"><span class="glossary-term">LLM</span><span class="glossary-en">Large Language Model</span><div class="glossary-def">大型語言模型，例如 GPT、Claude</div></div>
+          <div class="glossary-item"><span class="glossary-term">NLP</span><span class="glossary-en">Natural Language Processing</span><div class="glossary-def">自然語言處理</div></div>
+          <div class="glossary-item"><span class="glossary-term">OCR</span><span class="glossary-en">Optical Character Recognition</span><div class="glossary-def">光學字元辨識；把圖片／PDF 上的文字轉成可檢索文字</div></div>
+          <div class="glossary-item"><span class="glossary-term">Vector DB</span><span class="glossary-en">向量資料庫</span><div class="glossary-def">儲存 embedding 的資料庫，例如 Pinecone、pgvector</div></div>
+          <div class="glossary-item"><span class="glossary-term">Agentic Workflow</span><span class="glossary-en">代理式工作流</span><div class="glossary-def">LLM 自主規劃多步驟任務的工作流</div></div>
+          <div class="glossary-item"><span class="glossary-term">HITL</span><span class="glossary-en">Human-in-the-Loop</span><div class="glossary-def">人機協作；關鍵節點仍需人工確認</div></div>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <h3>商業指標類</h3>
+        <div class="glossary-grid">
+          <div class="glossary-item"><span class="glossary-term">TAM／SAM／SOM</span><span class="glossary-en">Market sizing</span><div class="glossary-def">市場總量／可服務市場／可觸及市場</div></div>
+          <div class="glossary-item"><span class="glossary-term">TTM</span><span class="glossary-en">Time to Market</span><div class="glossary-def">產品上市所需時間</div></div>
+          <div class="glossary-item"><span class="glossary-term">ROI</span><span class="glossary-en">Return on Investment</span><div class="glossary-def">投資報酬率</div></div>
+          <div class="glossary-item"><span class="glossary-term">CX</span><span class="glossary-en">Customer Experience</span><div class="glossary-def">客戶體驗</div></div>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <h3>組織角色類</h3>
+        <div class="glossary-grid">
+          <div class="glossary-item"><span class="glossary-term">PM</span><span class="glossary-en">Product Manager</span><div class="glossary-def">產品經理</div></div>
+          <div class="glossary-item"><span class="glossary-term">SPM</span><span class="glossary-en">Senior Product Manager</span><div class="glossary-def">產品線經理</div></div>
+          <div class="glossary-item"><span class="glossary-term">FPM</span><span class="glossary-en">Factory Product Manager</span><div class="glossary-def">工廠端產品經理</div></div>
+          <div class="glossary-item"><span class="glossary-term">PJM</span><span class="glossary-en">Project Manager</span><div class="glossary-def">專案經理</div></div>
+          <div class="glossary-item"><span class="glossary-term">RD</span><span class="glossary-en">Research & Development</span><div class="glossary-def">研發工程師</div></div>
+          <div class="glossary-item"><span class="glossary-term">PE</span><span class="glossary-en">Production Engineering</span><div class="glossary-def">生產工程</div></div>
+          <div class="glossary-item"><span class="glossary-term">生管</span><span class="glossary-en">Production Control</span><div class="glossary-def">生產排程控管</div></div>
+          <div class="glossary-item"><span class="glossary-term">物控</span><span class="glossary-en">Material Control</span><div class="glossary-def">物料控管</div></div>
+          <div class="glossary-item"><span class="glossary-term">研管</span><span class="glossary-en">R&D Management</span><div class="glossary-def">研發管理</div></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Generated by Claude Opus 4.7 · 2026-04-19 · 第 2 組
+    </footer>
+  </main>
+</div>
+
+<script>
+  // TOC active state on scroll
+  const links = document.querySelectorAll('.toc a');
+  const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
+  const onScroll = () => {
+    const y = window.scrollY + 120;
+    let active = 0;
+    sections.forEach((s, i) => { if (s && s.offsetTop <= y) active = i; });
+    links.forEach((l, i) => l.classList.toggle('active', i === active));
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+</script>
+</body>
+</html>

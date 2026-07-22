@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aipm048 lite — Line 請假小幫手 漫畫版 | MarkLuce.ai</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Bangers','Comic Neue','Noto Sans TC',-apple-system,sans-serif;background:#fef3c7;color:#1f2937;-webkit-font-smoothing:antialiased;min-height:100vh}
+.wrap{max-width:1200px;margin:0 auto;padding:1.5rem 1rem 4rem}
+nav{margin-bottom:1rem}
+nav a{color:#6b7280;text-decoration:none;font-size:.9rem;font-weight:600}
+nav a:hover{color:#2563eb}
+.title-card{background:#fbbf24;border:4px solid #1f2937;border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;box-shadow:8px 8px 0 #1f2937;transform:rotate(-.5deg)}
+.title-card h1{font-size:2.2rem;letter-spacing:.02em;margin-bottom:.4rem;color:#1f2937;font-weight:900;line-height:1.2}
+.title-card p{font-size:1rem;color:#374151;font-weight:600}
+.tag-row{margin-bottom:1rem}
+.tag{display:inline-block;background:#1f2937;color:#fbbf24;font-size:.75rem;font-weight:700;padding:.2rem .7rem;border-radius:999px;margin-right:.4rem;letter-spacing:.05em}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2rem}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+
+.panel{background:#fff;border:4px solid #1f2937;border-radius:14px;padding:1.25rem;box-shadow:6px 6px 0 #1f2937;position:relative;display:flex;flex-direction:column;min-height:340px;transition:transform .15s}
+.panel:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #1f2937}
+.panel-num{position:absolute;top:-18px;left:-18px;width:42px;height:42px;background:#ef4444;color:#fff;border:4px solid #1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem;box-shadow:3px 3px 0 #1f2937}
+.scene{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#dbeafe 0%,#bfdbfe 100%);border:3px solid #1f2937;border-radius:8px;padding:1rem;margin-bottom:.75rem;min-height:180px;position:relative;overflow:hidden}
+.scene.warm{background:linear-gradient(135deg,#fed7aa 0%,#fdba74 100%)}
+.scene.cool{background:linear-gradient(135deg,#a7f3d0 0%,#6ee7b7 100%)}
+.scene.purple{background:linear-gradient(135deg,#ddd6fe 0%,#c4b5fd 100%)}
+.scene.pink{background:linear-gradient(135deg,#fbcfe8 0%,#f9a8d4 100%)}
+.scene.yellow{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%)}
+
+.char{font-size:3.5rem;line-height:1}
+.char-row{display:flex;gap:1rem;align-items:center;justify-content:center;margin-bottom:.5rem}
+.bubble{background:#fff;border:2.5px solid #1f2937;border-radius:14px;padding:.4rem .75rem;font-size:.85rem;font-weight:700;position:relative;max-width:90%;text-align:center;color:#1f2937}
+.bubble::after{content:'';position:absolute;bottom:-10px;left:30px;border:8px solid transparent;border-top-color:#1f2937}
+.bubble::before{content:'';position:absolute;bottom:-6px;left:32px;border:6px solid transparent;border-top-color:#fff;z-index:1}
+
+.caption{background:#fef3c7;border:2px solid #1f2937;border-radius:6px;padding:.5rem .75rem;font-size:.85rem;font-weight:700;color:#1f2937;text-align:center;line-height:1.4}
+
+.boom{position:absolute;background:#fbbf24;color:#1f2937;border:3px solid #1f2937;padding:.3rem .8rem;font-weight:900;font-size:1.1rem;border-radius:6px;transform:rotate(-8deg);box-shadow:3px 3px 0 #1f2937;letter-spacing:.05em}
+.boom.tr{top:10px;right:10px}
+.boom.tl{top:10px;left:10px}
+.boom.br{bottom:10px;right:10px}
+
+.mcp-stack{display:flex;flex-direction:column;gap:.3rem;align-items:center}
+.mcp-tag{background:#fff;border:2px solid #1f2937;padding:.2rem .6rem;font-size:.7rem;font-weight:800;border-radius:4px;color:#1f2937;letter-spacing:.03em}
+.mcp-tag.hr{background:#fbbf24}
+.mcp-tag.lv{background:#a7f3d0}
+.mcp-tag.nt{background:#fbcfe8}
+.mcp-tag.fs{background:#c4b5fd}
+
+.flow-arrow{font-size:1.5rem;color:#1f2937;margin:.2rem 0;font-weight:900}
+
+.line-chat{background:#fff;border:2px solid #1f2937;border-radius:8px;padding:.4rem;width:90%;font-size:.7rem;color:#1f2937}
+.line-chat .msg{padding:.3rem .5rem;border-radius:10px;margin:.2rem 0;font-weight:600}
+.line-chat .me{background:#a7f3d0;text-align:right}
+.line-chat .bot{background:#e5e7eb}
+
+.bottomline{background:#1f2937;color:#fbbf24;border-radius:14px;padding:1.5rem 1.75rem;text-align:center;box-shadow:6px 6px 0 #ef4444;border:4px solid #1f2937}
+.bottomline h2{font-size:1.4rem;margin-bottom:.6rem;font-weight:900;letter-spacing:.02em}
+.bottomline p{color:#fef3c7;font-size:.95rem;font-weight:600;line-height:1.6}
+.bottomline strong{color:#fbbf24}
+
+.foot{margin-top:2rem;text-align:center;color:#6b7280;font-size:.8rem;font-weight:600}
+.foot a{color:#374151}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">← MarkLuce.ai</a> &nbsp;·&nbsp; <a href="/aipm048/">完整版 (architecture)</a></nav>
+
+<div class="tag-row">
+  <span class="tag">aipm048 LITE</span>
+  <span class="tag">COMIC</span>
+  <span class="tag">5 分鐘看懂</span>
+</div>
+
+<div class="title-card">
+  <h1>Line 請假小幫手 — 漫畫版！</h1>
+  <p>從「找不到請假表單」到「30 秒搞定」的故事 — MCP 架構是怎麼讓這件事變簡單的？</p>
+</div>
+
+<div class="grid">
+
+  <div class="panel">
+    <div class="panel-num">1</div>
+    <div class="scene warm">
+      <div class="boom tr">搞什麼啦！</div>
+      <div class="char">😩</div>
+      <div class="bubble" style="margin-top:.8rem">登入 HR 系統… 表單在哪？密碼又忘了！</div>
+    </div>
+    <div class="caption">老方法：請個假要打開電腦、登入企業系統、找表單、填一堆欄位</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-num">2</div>
+    <div class="scene yellow">
+      <div class="boom tl">叮咚！</div>
+      <div class="char">💡</div>
+      <div class="bubble" style="margin-top:.8rem">用 LINE 請假小幫手就好啦！</div>
+    </div>
+    <div class="caption">員工掏出手機，打開 LINE — 不用 App、不用登入、不用記密碼</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-num">3</div>
+    <div class="scene cool">
+      <div class="line-chat">
+        <div class="msg me">我要請特休</div>
+        <div class="msg bot">好的！請選日期 📅</div>
+        <div class="msg me">4/22 ~ 4/23</div>
+        <div class="msg bot">事由？</div>
+        <div class="msg me">家庭旅遊</div>
+      </div>
+    </div>
+    <div class="caption">就像跟同事聊天一樣 — Bot 一步步問完，全程在 LINE 裡面</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-num">4</div>
+    <div class="scene purple">
+      <div class="boom tr">變身！</div>
+      <div class="char-row">
+        <div class="char" style="font-size:2.5rem">🤖</div>
+        <div class="flow-arrow">→</div>
+        <div class="mcp-stack">
+          <div class="mcp-tag hr">HR Server</div>
+          <div class="mcp-tag lv">Leave Server</div>
+          <div class="mcp-tag nt">Notify Server</div>
+          <div class="mcp-tag fs">File Server</div>
+        </div>
+      </div>
+      <div class="bubble" style="margin-top:.8rem">MCP 把 Bot 變成有四個分身的超能助理！</div>
+    </div>
+    <div class="caption">幕後：Bot 透過 MCP 同時操作 HR 系統、假單、推播、檔案 — 像有四個小幫手</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-num">5</div>
+    <div class="scene pink">
+      <div class="boom tr">叮！</div>
+      <div class="char">📱</div>
+      <div class="bubble" style="margin-top:.8rem">主管，您的部屬有新假單請審核！</div>
+    </div>
+    <div class="caption">主管的 LINE 自動跳出待簽核卡片 — 兩顆按鈕：核准 / 駁回</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-num">6</div>
+    <div class="scene cool">
+      <div class="boom tr">YA！</div>
+      <div class="char">🎉</div>
+      <div class="bubble" style="margin-top:.8rem">假單通過！4/22 ~ 4/23 已核准</div>
+    </div>
+    <div class="caption">員工收到推播 — 全程不到 30 秒，從頭到尾沒離開 LINE</div>
+  </div>
+
+</div>
+
+<div class="bottomline">
+  <h2>🪄 為什麼 MCP 讓這一切變簡單？</h2>
+  <p>
+    <strong>過去：</strong>每接一個 HR / 假勤系統，工程師要手動寫一堆串接程式 ・ <strong>現在：</strong>MCP 是「標準插座」，HR 系統、假單、通知、檔案各自做成小服務，<br>
+    LLM (Claude / GPT) 直接「拿工具」就能用 — 換系統、換模型，介面通通不變。
+  </p>
+</div>
+
+<div class="foot">
+由 <a href="https://markluce.ai/">MarkLuce.ai</a> 出品 · aipm048 lite · <a href="/aipm048/">看完整架構圖 →</a>
+</div>
+
+</div>
+</body>
+</html>
