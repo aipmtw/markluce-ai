@@ -7,7 +7,7 @@
   <meta name="google-site-verification" content="SLVu6VIgdnnSc6KsmnAwAikPUWQHuFrnSbk6Zi1Bmps" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230EA5E9'/><text x='32' y='28' font-family='Arial,sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'>MARK</text><text x='32' y='48' font-family='Arial,sans-serif' font-size='14' font-weight='bold' fill='%2322D3EE' text-anchor='middle'>LUCE</text></svg>" />
   <title>MarkLuce.ai — 馬克路思科技</title>
-  <meta name="description" content="MarkLuce.ai — 用 AI 打造的產品與工具。AI Dev Brief、深度文章、ESL 英語平台、AI Agents 目錄、個人化語言繪本等專案，每個都是 AI 協作的成果。馬克路思科技。" />
+  <meta name="description" content="MarkLuce.ai — 用 AI 打造的產品與服務。免費 AI 個人化語言繪本、企業數位轉型（Toastmasters D67）、AI 研究平台等作品。馬克路思科技，歡迎洽談合作。" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',Roboto,sans-serif;color:#212529;background:#fff;-webkit-font-smoothing:antialiased}
@@ -39,6 +39,8 @@
     .featured-info h3{font-size:1.05rem;font-weight:800;color:#212529;margin-bottom:.15rem;line-height:1.3}
     .featured-info p{font-size:.8rem;color:#6c757d;line-height:1.5}
     .featured-arrow{font-size:1.2rem;color:#e91e63;flex-shrink:0}
+    .featured-tiers{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+    .featured-tiers span{font-size:.7rem;font-weight:600;color:#c2185b;background:rgba(233,30,99,.09);border-radius:20px;padding:.15rem .55rem}
 
     /* Hero */
     .hero{padding:1.5rem 0 1rem;text-align:center}
@@ -55,6 +57,27 @@
     .card p{font-size:.82rem;color:#6c757d;line-height:1.5}
     .card .tag{display:inline-block;font-size:.65rem;padding:.1rem .35rem;border-radius:3px;background:#e7f1ff;color:#0d6efd;margin-top:.4rem;font-weight:500}
     .card .tag.ext{background:#fff3cd;color:#856404}
+
+    /* YouTube section */
+    .yt{padding:1.5rem 0;border-top:1px solid #e9ecef}
+    .yt-head{display:flex;align-items:center;gap:1rem;background:linear-gradient(135deg,#fff5f5 0%,#ffe9e9 100%);border:1px solid rgba(204,0,0,.12);border-radius:16px;padding:1.1rem 1.3rem}
+    .yt-logo{width:46px;height:46px;border-radius:12px;background:#ff0000;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .yt-logo svg{width:26px;height:26px;fill:#fff}
+    .yt-head-info{flex:1;min-width:0}
+    .yt-head-info .yt-label{font-size:.62rem;font-weight:700;color:#cc0000;text-transform:uppercase;letter-spacing:.06em}
+    .yt-head-info h3{font-size:1.1rem;font-weight:800;color:#212529;margin:.05rem 0 .15rem}
+    .yt-head-info p{font-size:.78rem;color:#6c757d;line-height:1.5}
+    .yt-sub{flex-shrink:0;background:#ff0000;color:#fff;font-size:.78rem;font-weight:700;padding:.5rem .9rem;border-radius:20px;white-space:nowrap;transition:background .15s}
+    .yt-sub:hover{background:#cc0000;color:#fff;text-decoration:none}
+    .yt-group-title{font-size:.88rem;font-weight:700;color:#212529;margin:1.3rem 0 .6rem}
+    .yt-grid{display:grid;grid-template-columns:1fr;gap:.7rem}
+    .pl-card{position:relative;border:1px solid #e9ecef;border-radius:10px;padding:.85rem 1rem;background:#fff;color:inherit;transition:all .2s;display:block}
+    .pl-card:hover{border-color:#ff0000;box-shadow:0 4px 12px rgba(204,0,0,.08);text-decoration:none;transform:translateY(-1px)}
+    .pl-card h4{font-size:.9rem;font-weight:600;color:#212529;margin-bottom:.2rem;padding-right:3.2rem}
+    .pl-card p{font-size:.77rem;color:#6c757d;line-height:1.45}
+    .pl-count{position:absolute;top:.85rem;right:1rem;font-size:.6rem;font-weight:600;color:#cc0000;background:rgba(255,0,0,.08);border-radius:12px;padding:.12rem .5rem;white-space:nowrap}
+    .yt-more{text-align:center;margin-top:1.3rem}
+    .yt-more a{font-size:.82rem;font-weight:600;color:#cc0000}
 
     /* Footer */
     .footer{border-top:1px solid #e9ecef;padding:1.2rem 0;text-align:center}
@@ -75,10 +98,12 @@
       .featured-card{padding:1.5rem 1.8rem}
       .featured-book{width:56px;height:74px;font-size:1.8rem}
       .featured-info h3{font-size:1.2rem}
+      .yt-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
     }
 
     @media(min-width:900px){
       .grid{grid-template-columns:repeat(3,1fr)}
+      .yt-grid{grid-template-columns:repeat(3,1fr)}
     }
   </style>
   <!-- LIFF redirect handler: catch liff.state returnTo and redirect -->
@@ -102,113 +127,198 @@
 <div class="container">
   <div class="header">
     <div class="logo"><span>Mark</span>Luce<span>.</span>ai</div>
-    <div class="company">馬克路思科技有限公司 MarkLuce Technology Co., Ltd. &nbsp;<a class="header-link" href="/namecard/" style="display:inline-flex;vertical-align:middle">📇 名片</a></div>
-  </div>
-
-  <!-- Featured: Storybook App -->
-  <div class="featured">
-    <a class="featured-card" href="https://app.markluce.ai/">
-      <div class="featured-books">
-        <div class="featured-book">🦕</div>
-        <div class="featured-book">🎤</div>
-        <div class="featured-book">🚀</div>
-      </div>
-      <div class="featured-info">
-        <div class="featured-label">Our App</div>
-        <h3>AI 個人化語言繪本</h3>
-        <p>0–12 歲兒童專屬雙語繪本。AI 草擬、人類審閱、LINE 登入、離線可讀。</p>
-      </div>
-      <div class="featured-arrow">→</div>
-    </a>
+    <div class="company">馬克路思科技有限公司 MarkLuce Technology Co., Ltd. &nbsp;<a class="header-link" href="/services/" style="display:inline-flex;vertical-align:middle">💡 我們能做什麼</a> <a class="header-link" href="/namecard/" style="display:inline-flex;vertical-align:middle">📇 名片</a></div>
   </div>
 
   <div class="hero">
-    <h2>AI-Powered Projects</h2>
-    <p>用 AI 打造的產品與工具，從構想到上線，每個專案都是 AI 協作的成果。</p>
+    <h2>精選作品 · Selected Work</h2>
+    <p>用 AI 把構想變成上線的產品——從個人化繪本、企業數位轉型到 AI 研究平台。<a href="/services/">→ 我們能做什麼</a> · 歡迎洽談合作。</p>
   </div>
 
   <div class="grid">
-    <a class="card" href="/scottsu/">
-      <div class="card-icon" style="background:#0f2847">TM</div>
+    <a class="card" href="https://storybook-free.vercel.app/" target="_blank">
+      <div class="card-icon" style="background:#e91e63">繪本</div>
       <div class="card-body">
-        <h3>Scott Su 競選網站</h3>
-        <p>Toastmasters D67 候選人競選網站，含 AI 助理即時問答。</p>
-        <span class="tag">AI Chatbot</span>
+        <h3>AI 個人化語言繪本</h3>
+        <p>0–12 歲兒童專屬雙語繪本，36 本全部免費閱讀。中英對照、語音朗讀，AI 草擬、人類審閱。</p>
+        <span class="tag">全部免費 · 36 本</span>
       </div>
     </a>
 
-    <a class="card" href="/mvp/builder">
-      <div class="card-icon" style="background:#0d6efd">MVP</div>
+    <a class="card" href="https://mot.toastmasters.org.tw/" target="_blank">
+      <div class="card-icon" style="background:#004165">D67</div>
       <div class="card-body">
-        <h3>MVP Builder</h3>
-        <p>描述構想，AI 即時生成完整 MVP 規劃書。</p>
-        <span class="tag">AI 生成</span>
+        <h3>Toastmasters D67 數位化</h3>
+        <p>國際演講協會 D67 的數位轉型：MOT 關鍵時刻評量問卷，以及分會儀表板與 API。.NET 8 · Azure，已上線營運。</p>
+        <span class="tag">企業客戶 · 已上線</span>
       </div>
     </a>
 
-    <a class="card" href="/storybook/">
-      <div class="card-icon" style="background:#c2185b">計畫</div>
+    <a class="card" href="https://markluce-milestones.vercel.app/" target="_blank">
+      <div class="card-icon" style="background:#1b5e20">GTO</div>
       <div class="card-body">
-        <h3>繪本商業計畫</h3>
-        <p>AI 個人化語言繪本完整商業計畫書。概念、產品、技術、路線圖。</p>
-        <span class="tag">商業計畫</span>
+        <h3>GTO 撲克 AI 研究平台</h3>
+        <p>AI 撲克機器人「markluce」於 GTO Wizard 官方基準賽（HUNL 200BB）排名 #12／54。查看技術能力與開發里程碑。</p>
+        <span class="tag">AI 研究</span>
       </div>
     </a>
 
-    <a class="card" href="/daily-brief/">
-      <div class="card-icon" style="background:#0d6efd">>_</div>
+    <a class="card" href="https://markluce-benchmark.vercel.app/" target="_blank">
+      <div class="card-icon" style="background:#0d3b1e">基準</div>
       <div class="card-body">
-        <h3>AI Dev Brief</h3>
-        <p>每日三則 AI 開發工具與程式設計生態快訊。</p>
-        <span class="tag">每日更新</span>
+        <h3>markluce 本地基準台</h3>
+        <p>自建的撲克基準台,由冠軍 bot「markluce」當固定莊家(house AI);任何 bot 只要把 API 網址指向本地端即可挑戰。含 All-in Bot 基準底線與排行榜(chip-EV,非 AIVAT)。</p>
+        <span class="tag">AI 研究 · 本地基準</span>
       </div>
     </a>
 
-    <a class="card" href="/features/">
-      <div class="card-icon" style="background:#6f42c1">&lt;/&gt;</div>
+    <a class="card" href="https://ai-agent-series.vercel.app/" target="_blank">
+      <div class="card-icon" style="background:#6f42c1">AI</div>
       <div class="card-body">
-        <h3>Features 深度文章</h3>
-        <p>AI 開發工具的深度比較與分析。Claude Code、Codex 等工具實戰評測。</p>
-        <span class="tag">深度分析</span>
+        <h3>AI 代理精通系列</h3>
+        <p>十二集帶你從聊天機器人到 AI 代理：LLM、工具使用、工作流程、記憶、多代理系統與 Claude Code。</p>
+        <span class="tag">教育內容</span>
       </div>
     </a>
 
-    <a class="card" href="/esl/">
-      <div class="card-icon" style="background:#198754">ESL</div>
+    <a class="card" href="https://2026aizebra-aipm.vercel.app/" target="_blank">
+      <div class="card-icon" style="background:#0d6efd">PM</div>
       <div class="card-body">
-        <h3>LevelUp ESL</h3>
-        <p>CEFR 分級英語閱讀與聽力自評平台。中英雙語對照，適合親子共學。</p>
-        <span class="tag">教育</span>
+        <h3>AIZEBRA · AI 產品管理沙盒</h3>
+        <p>互動式產品管理模擬器：以 AI 邏輯引擎為題，完整走過 8 步產品生命週期——分眾、概念、MVP、定價、驗證到商業提案。「產品管理界的 Duolingo」。</p>
+        <span class="tag">PM 模擬 · 教育</span>
       </div>
     </a>
 
-    <a class="card" href="/agents/">
-      <div class="card-icon" style="background:#fd7e14">AI</div>
+    <a class="card" href="https://aizebra.app/" target="_blank">
+      <div class="card-icon" style="background:#fd7e14">ZB</div>
       <div class="card-body">
-        <h3>AI Agents 目錄</h3>
-        <p>212 個即插即用的 AI 專家角色，涵蓋 18 個部門。繁體中文版。</p>
-        <span class="tag">智慧體目錄</span>
+        <h3>AI Zebra Calculator</h3>
+        <p>選取斑馬邏輯謎題的線索，伺服器即時精算剩餘排列組合數，保證正確。</p>
+        <span class="tag">邏輯工具</span>
       </div>
     </a>
 
-    <a class="card" href="https://dailyai.tw/" target="_blank">
-      <div class="card-icon" style="background:#dc3545">AI</div>
+    <a class="card" href="https://max-bj.vercel.app/" target="_blank">
+      <div class="card-icon" style="background:#212529">BJ</div>
       <div class="card-body">
-        <h3>Daily AI Taiwan</h3>
-        <p>台灣觀點的雙語 AI 新聞平台。每日日報、月報、年報、深度分析。</p>
-        <span class="tag ext">外部連結</span>
+        <h3>Blackjack 認知訓練模擬器</h3>
+        <p>離線單人 advantage-play 認知訓練模擬器。純教育用途，非賭博、非實戰工具。</p>
+        <span class="tag">訓練模擬</span>
       </div>
     </a>
+
+    <a class="card" href="https://ai0628.vercel.app/" target="_blank">
+      <div class="card-icon" style="background:#dc3545">遊戲</div>
+      <div class="card-body">
+        <h3>台灣大富翁</h3>
+        <p>單檔版台灣大富翁遊戲，瀏覽器即開即玩。</p>
+        <span class="tag">遊戲 Demo</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://zebra-puzzle-two.vercel.app/" target="_blank">
+      <div class="card-icon" style="background:#198754">謎</div>
+      <div class="card-body">
+        <h3>下午茶推理謎題</h3>
+        <p>改寫自 Zebra Puzzle 的邏輯推理謎題，附逐步教學提示。</p>
+        <span class="tag">邏輯謎題</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="yt">
+    <div class="yt-head">
+      <div class="yt-logo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+      </div>
+      <div class="yt-head-info">
+        <div class="yt-label">YouTube 頻道</div>
+        <h3>Markluce AI</h3>
+        <p>🤖 用淺顯繁體中文「導讀」AI 與科技——帶你看懂，跟著動手。近 700 部影片，持續更新。</p>
+      </div>
+      <a class="yt-sub" href="https://www.youtube.com/@markluceai?sub_confirmation=1" target="_blank" rel="noopener">▶ 訂閱</a>
+    </div>
+
+    <div class="yt-group-title">📰 每日 AI 導讀</div>
+    <div class="yt-grid">
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLRfspzRt4rjc" target="_blank" rel="noopener">
+        <span class="pl-count">52 部</span>
+        <h4>5 分鐘 AI 新聞導讀</h4>
+        <p>每天最新的 AI 與科技動態，中文語音 5 分鐘帶你看懂。</p>
+      </a>
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLNveRRPJ7sig" target="_blank" rel="noopener">
+        <span class="pl-count">52 部</span>
+        <h4>5-Min AI News (English)</h4>
+        <p>The same daily AI briefing, in clear English audio.</p>
+      </a>
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLLxziNU0uGvE" target="_blank" rel="noopener">
+        <span class="pl-count">18 部</span>
+        <h4>AI 科技深度導讀</h4>
+        <p>重要主題的完整版導讀，一次把來龍去脈講透。</p>
+      </a>
+    </div>
+
+    <div class="yt-group-title">🔬 技術專題</div>
+    <div class="yt-grid">
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLcmHo1eOn-iM" target="_blank" rel="noopener">
+        <span class="pl-count">16 部</span>
+        <h4>LangChain 開發導讀</h4>
+        <p>從零認識 LangChain，動手打造 LLM 應用。</p>
+      </a>
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLGO1Ti3sthnM" target="_blank" rel="noopener">
+        <span class="pl-count">10 部</span>
+        <h4>NVIDIA 生態導讀</h4>
+        <p>解讀 NVIDIA 的 AI 晶片與最新技術動向。</p>
+      </a>
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLVSUK0h6dLd0" target="_blank" rel="noopener">
+        <span class="pl-count">13 部</span>
+        <h4>Anthropic Academy 學習筆記</h4>
+        <p>跟著 Anthropic 官方課程，學會用 Claude 開發。</p>
+      </a>
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLcQnj3w2K7Yk" target="_blank" rel="noopener">
+        <span class="pl-count">9 部</span>
+        <h4>李宏毅 機器學習 2026 精華</h4>
+        <p>台大李宏毅教授課程的重點精華整理。</p>
+      </a>
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLAChjzkNLeIs" target="_blank" rel="noopener">
+        <span class="pl-count">10 部</span>
+        <h4>GTO Wizard 撲克 AI 基準</h4>
+        <p>撲克 AI「markluce」的官方基準賽實測紀錄。</p>
+      </a>
+    </div>
+
+    <div class="yt-group-title">🌏 雙語學習 · 專案幕後</div>
+    <div class="yt-grid">
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLUjkerjz3X3A" target="_blank" rel="noopener">
+        <span class="pl-count">12 部</span>
+        <h4>雙語 · AI 智能體程式設計</h4>
+        <p>中英雙語，帶你一步步動手寫 AI Agent。</p>
+      </a>
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLYDRWMd_9RvQ" target="_blank" rel="noopener">
+        <span class="pl-count">12 部</span>
+        <h4>雙語 · 世界文明古國</h4>
+        <p>中英雙語，輕鬆認識人類的古文明。</p>
+      </a>
+      <a class="pl-card" href="https://www.youtube.com/playlist?list=PLKoFrYBQW48g" target="_blank" rel="noopener">
+        <span class="pl-count">4 部</span>
+        <h4>D67 開發幕後 · Behind the Build</h4>
+        <p>Toastmasters D67 數位化專案的開發紀錄。</p>
+      </a>
+    </div>
+
+    <div class="yt-more">
+      <a href="https://www.youtube.com/@markluceai/playlists" target="_blank" rel="noopener">查看全部播放清單 →</a>
+    </div>
   </div>
 
   <div class="footer">
     <div class="footer-links">
+      <a href="mailto:mark@aipm.com.tw">洽談合作 Email</a>
       <a href="/namecard/">名片</a>
+      <a href="https://app.markluce.ai/">繪本 App</a>
+      <a href="https://www.youtube.com/@markluceai" target="_blank">YouTube</a>
       <a href="https://github.com/aipmtw" target="_blank">GitHub</a>
-      <a href="mailto:mark@aipm.com.tw">Email</a>
-      <a href="/daily-brief/">Daily Brief</a>
-      <a href="/features/">Features</a>
-      <a href="/esl/">ESL</a>
     </div>
     <div class="footer-copy">© 2026 馬克路思科技有限公司 · Powered by AI</div>
   </div>
