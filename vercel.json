@@ -1,33 +1,133 @@
 {
   "rewrites": [
-    { "source": "/api/content", "destination": "/api/content.js" },
-    { "source": "/api/track", "destination": "/api/track.js" },
-    { "source": "/api/admin", "destination": "/api/admin.js" },
-    { "source": "/api/brief", "destination": "/api/brief.js" },
-    { "source": "/api/briefs", "destination": "/api/briefs.js" },
-    { "source": "/api/features", "destination": "/api/features.js" },
-    { "source": "/scottsu/api/chat", "destination": "/api/scottsu-chat.js" },
-    { "source": "/scottsu/api/tts", "destination": "/api/scottsu-tts.js" },
-    { "source": "/scottsu/api/info", "destination": "/api/scottsu-info.js" },
-    { "source": "/api/sql", "destination": "/api/sql.js" },
-    { "source": "/api/line-auth", "destination": "/api/line-auth.js" },
-    { "source": "/api/inquiry", "destination": "/api/inquiry.js" },
-    { "source": "/api/book-logins", "destination": "/api/book-logins.js" },
-    { "source": "/api/books", "destination": "/api/books.js" },
-    { "source": "/api/book-pages", "destination": "/api/book-pages.js" },
-    { "source": "/api/user-books", "destination": "/api/user-books.js" },
-    { "source": "/api/book-key", "destination": "/api/book-key.js" },
-    { "source": "/api/partner-apply", "destination": "/api/partner-apply.js" },
-    { "source": "/api/line-bot", "destination": "/api/line-bot.js" },
-    { "source": "/api/ecpay-create", "destination": "/api/ecpay-create.js" },
-    { "source": "/api/ecpay-callback", "destination": "/api/ecpay-callback.js" },
-    { "source": "/api/my-blog", "destination": "/api/my-blog.js" },
-    { "source": "/api/bot001-chat", "destination": "/api/bot001-chat.js" },
-    { "source": "/features/:path*", "destination": "/features/index.html" },
-    { "source": "/my-blog/:path*", "destination": "/my-blog/index.html" },
-    { "source": "/mvp/api/generate", "destination": "/api/mvp-generate.js" },
-    { "source": "/mvp/api/get", "destination": "/api/mvp-get.js" },
-    { "source": "/mvp/builder", "destination": "/mvp/builder/index.html" },
-    { "source": "/mvp/:slug", "destination": "/mvp/index.html" }
-  ]
+    {
+      "source": "/api/content",
+      "destination": "/api/content.js"
+    },
+    {
+      "source": "/api/track",
+      "destination": "/api/track.js"
+    },
+    {
+      "source": "/api/admin",
+      "destination": "/api/admin.js"
+    },
+    {
+      "source": "/api/brief",
+      "destination": "/api/brief.js"
+    },
+    {
+      "source": "/api/briefs",
+      "destination": "/api/briefs.js"
+    },
+    {
+      "source": "/api/features",
+      "destination": "/api/features.js"
+    },
+    {
+      "source": "/scottsu/api/chat",
+      "destination": "/api/scottsu-chat.js"
+    },
+    {
+      "source": "/scottsu/api/tts",
+      "destination": "/api/scottsu-tts.js"
+    },
+    {
+      "source": "/scottsu/api/info",
+      "destination": "/api/scottsu-info.js"
+    },
+    {
+      "source": "/api/sql",
+      "destination": "/api/sql.js"
+    },
+    {
+      "source": "/api/line-auth",
+      "destination": "/api/line-auth.js"
+    },
+    {
+      "source": "/api/inquiry",
+      "destination": "/api/inquiry.js"
+    },
+    {
+      "source": "/api/book-logins",
+      "destination": "/api/book-logins.js"
+    },
+    {
+      "source": "/api/books",
+      "destination": "/api/books.js"
+    },
+    {
+      "source": "/api/book-pages",
+      "destination": "/api/book-pages.js"
+    },
+    {
+      "source": "/api/user-books",
+      "destination": "/api/user-books.js"
+    },
+    {
+      "source": "/api/book-key",
+      "destination": "/api/book-key.js"
+    },
+    {
+      "source": "/api/partner-apply",
+      "destination": "/api/partner-apply.js"
+    },
+    {
+      "source": "/api/line-bot",
+      "destination": "/api/line-bot.js"
+    },
+    {
+      "source": "/api/ecpay-create",
+      "destination": "/api/ecpay-create.js"
+    },
+    {
+      "source": "/api/ecpay-callback",
+      "destination": "/api/ecpay-callback.js"
+    },
+    {
+      "source": "/api/my-blog",
+      "destination": "/api/my-blog.js"
+    },
+    {
+      "source": "/api/bot001-chat",
+      "destination": "/api/bot001-chat.js"
+    },
+    {
+      "source": "/features/:path*",
+      "destination": "/features/index.html"
+    },
+    {
+      "source": "/my-blog/:path*",
+      "destination": "/my-blog/index.html"
+    },
+    {
+      "source": "/mvp/api/generate",
+      "destination": "/api/mvp-generate.js"
+    },
+    {
+      "source": "/mvp/api/get",
+      "destination": "/api/mvp-get.js"
+    },
+    {
+      "source": "/mvp/builder",
+      "destination": "/mvp/builder/index.html"
+    },
+    {
+      "source": "/mvp/:slug",
+      "destination": "/mvp/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "levelup-esl"
+      }
+    }
+  ],
+  "services": {
+    "levelup-esl": {
+      "root": ".",
+      "buildCommand": "npm install"
+    }
+  }
 }

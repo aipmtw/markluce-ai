@@ -51,14 +51,20 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 16px;
       padding-right: 10px;
       border-right: 1px solid #000;
       height: 100%;
     }
+    .qr-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
     .qr-box {
-      width: 96px;
-      height: 96px;
+      width: 82px;
+      height: 82px;
       padding: 5px;
       border: 1px solid #000;
       background: #fff;
@@ -203,7 +209,8 @@
 
     @media (max-width: 500px) {
       .card { padding: 18px 20px; gap: 18px; }
-      .qr-box { width: 80px; height: 80px; padding: 4px; }
+      .qr-box { width: 62px; height: 62px; padding: 4px; }
+      .qr-col { gap: 12px; }
       .qr-url { font-size: 0.55rem; }
       .company-zh { font-size: 0.78rem; }
       .name-zh { font-size: 1.5rem; letter-spacing: 0.15em; }
@@ -256,10 +263,18 @@
     <div class="card">
       <!-- LEFT: QR code -->
       <div class="qr-col">
-        <div class="qr-box">
-          <img src="/namecard/qr.png" alt="markluce.ai QR" />
+        <div class="qr-item">
+          <div class="qr-box">
+            <img src="/namecard/qr.png" alt="markluce.ai QR" />
+          </div>
+          <a class="qr-url" href="https://markluce.ai" target="_blank">markluce.ai</a>
         </div>
-        <a class="qr-url" href="https://markluce.ai" target="_blank">markluce.ai</a>
+        <div class="qr-item">
+          <div class="qr-box">
+            <img src="/namecard/youtube-qr.png" alt="YouTube @markluceai QR" />
+          </div>
+          <a class="qr-url" href="https://www.youtube.com/@markluceai" target="_blank">YOUTUBE</a>
+        </div>
       </div>
 
       <!-- RIGHT: content -->
@@ -280,11 +295,11 @@
         <div class="details">
           <div class="detail-row">
             <div class="k">地址</div>
-            <div class="v">台中市中區大誠里台灣大道一段501號10樓之1</div>
+            <div class="v">台中市中區大誠里台灣大道一段501號10樓之1<br><span style="color:#555;font-size:0.92em;letter-spacing:0.01em">No. 501, Section 1, Taiwan Blvd, Dacheng Village, Central District, Taichung City, 400</span></div>
           </div>
           <div class="detail-row">
             <div class="k">電郵</div>
-            <div class="v"><a href="mailto:mark@aipm.com.tw">mark@aipm.com.tw</a></div>
+            <div class="v"><a href="mailto:caotunspring@gmail.com">caotunspring@gmail.com</a></div>
           </div>
           <div class="tax">
             <span class="tax-label">統一編號</span>
@@ -313,7 +328,7 @@
     'N:Chen;Mark;;;',
     'ORG:Markluce Tech Co., Ltd.;馬克路思科技有限公司',
     'TITLE:Founder 創辦人',
-    'EMAIL;TYPE=INTERNET:mark@aipm.com.tw',
+    'EMAIL;TYPE=INTERNET:caotunspring@gmail.com',
     'URL:https://markluce.ai',
     'ADR;TYPE=WORK:;;台灣大道一段501號10樓之1;台中市中區;;;台灣',
     'NOTE:統一編號 60670979',
