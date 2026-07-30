@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230EA5E9'/><text x='32' y='28' font-family='Arial,sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'>MARK</text><text x='32' y='48' font-family='Arial,sans-serif' font-size='14' font-weight='bold' fill='%2322D3EE' text-anchor='middle'>LUCE</text></svg>" />
   <title>我們能做什麼 · What We Do — 馬克路思科技</title>
-  <meta name="description" content="馬克路思科技的能力總覽：AI 產品開發、企業數位轉型、AI 研究方法、教育內容、邏輯引擎與 LINE／金流整合。每項能力都有已上線的作品佐證。" />
+  <meta name="description" content="馬克路思科技的能力總覽：AI 產品開發、企業數位轉型、AI 研究方法、教育內容、邏輯引擎、資安品質檢測（CISSP）與 LINE／金流整合。每項能力都有已上線的作品佐證。" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',Roboto,sans-serif;color:#212529;background:#fff;-webkit-font-smoothing:antialiased;line-height:1.6}
@@ -41,6 +41,23 @@
     .cta p{font-size:.86rem;color:#6c757d;margin-top:.3rem}
     .cta-btn{display:inline-block;margin-top:.9rem;background:#0d6efd;color:#fff;font-size:.86rem;font-weight:600;padding:.55rem 1.4rem;border-radius:8px}
     .cta-btn:hover{background:#0a58ca;text-decoration:none}
+
+    .thesis{margin:2.4rem 0;padding:1.6rem;background:linear-gradient(135deg,#f0f9ff 0%,#f8f9fa 100%);border-radius:16px;border:1px solid #e0f2fe}
+    .thesis-h{text-align:center;margin-bottom:.4rem}
+    .thesis-h .eyebrow{font-size:.72rem;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.08em}
+    .thesis-h h2{font-size:1.22rem;font-weight:800;margin-top:.35rem;letter-spacing:-.01em}
+    .thesis-h p{font-size:.86rem;color:#6c757d;margin-top:.5rem;max-width:600px;margin-left:auto;margin-right:auto}
+    .layers{display:grid;gap:.8rem;margin-top:1.1rem}
+    .layer{background:#fff;border-radius:10px;padding:.95rem 1.05rem;border:1px solid #e9ecef}
+    .layer-h{display:flex;align-items:baseline;gap:.5rem}
+    .layer-n{font-size:1rem;font-weight:800;color:#0891b2;font-variant-numeric:tabular-nums;flex-shrink:0}
+    .layer h3{font-size:.95rem;font-weight:700}
+    .layer h3 .en{font-size:.66rem;color:#adb5bd;font-weight:500;margin-left:.35rem;text-transform:uppercase;letter-spacing:.04em}
+    .layer p{font-size:.82rem;color:#495057;margin-top:.3rem}
+    .layer .tie{font-size:.76rem;color:#6c757d;margin-top:.45rem}
+    .layer .tie b{color:#0891b2;font-weight:600}
+    .thesis-foot{text-align:center;font-size:.92rem;color:#212529;margin-top:1.3rem;font-weight:700;line-height:1.7}
+    @media(min-width:600px){.layers{grid-template-columns:1fr 1fr}}
 
     .footer{border-top:1px solid #e9ecef;padding:1.2rem 0;text-align:center}
     .footer-links{display:flex;justify-content:center;gap:1rem;margin-bottom:.4rem;flex-wrap:wrap}
@@ -101,6 +118,43 @@
     <div class="cap-h"><span class="cap-num">06</span><h2>整合能力</h2><span class="cap-en">Integrations</span></div>
     <p>把產品接上台灣真實的生態系：LINE 登入／官方帳號、金流（ECPay／PayUni）、離線可用的 PWA。</p>
     <div class="proof">佐證：繪本 App 的 LINE 登入與訂閱金流、離線閱讀，均已實作於正式產品中。</div>
+  </div>
+
+  <div class="cap">
+    <div class="cap-h"><span class="cap-num">07</span><h2>資安品質檢測</h2><span class="cap-en">Security QA &amp; Audit</span></div>
+    <p>以 <b>CISSP</b> 資安專業，為產品做上線前的獨立把關：黑箱功能測試搭配白箱資安稽核——反編譯、程式碼審查、通訊協定探測，到傳輸加密（TLS）、認證與 session 處理、客戶端穩定性，找出風險並依對象分流回報（產品風險給 PM、技術缺陷給工程團隊）。</p>
+    <div class="proof">佐證：為一款線上多人即時對戰產品執行完整資安稽核，發掘認證、傳輸加密與連線穩定性等<b>上線阻斷級（launch-blocker）</b>風險（客戶保密，細節不公開）。</div>
+  </div>
+
+  <div class="thesis">
+    <div class="thesis-h">
+      <div class="eyebrow">我們的觀點 · Our Thesis</div>
+      <h2>未來五到十年，最大的機會在個人與小團隊</h2>
+      <p>AI 讓過去只有大公司能做的事，現在一兩個人就能完成。我們看到四層機會——而且每一層，我們都已經動手做了。</p>
+    </div>
+    <div class="layers">
+      <div class="layer">
+        <div class="layer-h"><span class="layer-n">1</span><h3>垂直領域 AI 應用<span class="en">Vertical Apps</span></h3></div>
+        <p>很懂某一個領域，把 AI 套進去，就能做出有市場的產品。</p>
+        <div class="tie">我們的實作：<b>AI 個人化語言繪本</b>、<b>居家照護小幫手</b>。</div>
+      </div>
+      <div class="layer">
+        <div class="layer-h"><span class="layer-n">2</span><h3>AI 代理<span class="en">AI Agents</span></h3></div>
+        <p>不只回答問題，而是真的幫人把一整套工作做完。</p>
+        <div class="tie">我們的實作：<b>Recap Factory</b> — 抓 YouTube 連結 → 轉錄 → 摘要 → 產生影片 → 配音 → 上傳，全流程自動化。</div>
+      </div>
+      <div class="layer">
+        <div class="layer-h"><span class="layer-n">3</span><h3>窄而深的專家<span class="en">Narrow &amp; Deep</span></h3></div>
+        <p>不跟大模型比誰會聊天，而是選一個窄但很深的領域。市場不必有幾十億人，幾萬個願付費的專業使用者，就足以撐起一家非常成功的小公司。</p>
+        <div class="tie">我們的實作：德州撲克 AI「<b>markluce</b>」與 <b>GTO 研究平台</b>。</div>
+      </div>
+      <div class="layer">
+        <div class="layer-h"><span class="layer-n">4</span><h3>自己的 AI 工廠<span class="en">Your AI Factory</span></h3></div>
+        <p>把流程拆成一群 agent：PM、研究、開發、測試、影片、行銷。接一個案子不再是一個人做，而是帶著一整支 AI 團隊。</p>
+        <div class="tie">我們的實作：這正是馬克路思目前建構的方向。</div>
+      </div>
+    </div>
+    <div class="thesis-foot">五年後真正值錢的，不是誰有最好的模型，<br>而是誰最懂客戶、最懂流程、最懂產品。</div>
   </div>
 
   <div class="cta">
